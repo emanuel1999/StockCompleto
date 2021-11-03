@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.87.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+
+    <title>Login con Node + JWT + MySQL</title>
+    <!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#" style="background-color: brown;">RICOH ARGENTINA</a> 
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a type="button" class="px-3 btn btn-danger" href="logout">Logout</a>
+    </div>
+  </div>
+</header>
+<div class="container-fluid">
+  <div class="row">
+    
+    <!-- Contenido principal   -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Dashboard</h2>
+        
+      </div> 
+    </main>
+  </div>
+</div>
+<% if (libros){ %>
+<div class="container mt-4" >
+    <div class="card border-secondary" >
+    <div class="card-header">Editar Libro</div>
+    <div class="card-body">
+        <form action="/update" method="POST">
+            <input hidden type="text" name="id" id="id" value="<%= libros.id %>">
+            <div class="mb-3">
+                <label for="prioridad" class="form-label">Prioridad</label>
+                <input type="number" name="prioridad" id="prioridad" class="form-control" tabindex="1" value="<%= libros.prioridad %>">
+            </div>
+            <div class="mb-3">
+                <label for="estado" class="form-label" >Estado</label>
+                <select name="estado" id="estado" class="form-select" tabindex="2">
+                  <option <%= libros.pliego =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
+                  <option <%= libros.pliego =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
+                  <option <%= libros.pliego =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="libro" class="form-label">Libro</label>
+                <input type="text" name="libro" id="libro" class="form-control" tabindex="1" value="<%= libros.libro %>">
+            </div>
+            <div class="mb-3">
+                <label for="fechaentrega" class="form-label">Fecha De Entrega</label>
+                <input type="date" name="fechaentrega" id="fechaentrega" class="form-control" tabindex="1" value="<%= libros.fechaentrega %>">
+            </div>
+            <div class="mb-3">
+                <label for="fechapentrega" class="form-label">Fecha Probable De Entrega</label>
+                <input type="date" name="fechapentrega" id="fechapentrega" class="form-control" tabindex="1" value="<%= libros.fechapentrega %>" >
+            </div>
+            <div class="mb-3">
+                <label for="pliego" class="form-label">Pliego</label>
+                <select name="pliego" id="pliego" class="form-select" tabindex="2">
+                  <option <%= libros.pliego =='Producto' ? "selected" : '' %> value="Producto">Producto</option>
+                  <option <%= libros.pliego =='Libro' ? "selected" : '' %> value="Libro">Libro</option>
+                  <option <%= libros.pliego =='Tapa' ? "selected" : '' %> value="Tapa">Tapa</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tirajeCondemasia" class="form-label">Tiraje Con Demasia</label>
+                <input type="number" name="tirajeCondemasia" id="tirajeCondemasia" class="form-control" tabindex="1" value="<%= libros.tirajeCondemasia %>">
+            </div>
+            
+            <div class="mb-3">
+                <label for="tirajecliente" class="form-label">Se Entrega Al Cliente</label>
+                <input type="number" name="tirajecliente" id="tirajecliente" class="form-control" tabindex="1" value="<%= libros.tirajecliente %>">
+            </div>
+            <div class="mb-3">
+                <label for="tirajeosa" class="form-label">Se Entrega A OSA</label>
+                <input type="number" name="tirajeosa" id="tirajeosa" class="form-control" tabindex="1" value="<%= libros.tirajeosa %>">
+            </div>
+            ----
+            <div class="mb-3"><label for="cerrado" class="form-label">Seccion Orden De Trabajo</label></div>
+            <div class="mb-3">
+              <label for="cerrado" class="form-label">Cerrado (en mm.)</label>
+              <input type="text" name="cerrado" id="cerrado" class="form-control" tabindex="1" value="<%= libros.cerrado %>">
+            </div>
+          
+            <div class="mb-3">
+              <label for="abierto" class="form-label">Abierto (en mm.)</label>
+              <input type="text" name="abierto" id="abierto" class="form-control" tabindex="1" value="<%= libros.abierto %>" >
+             </div>
+            <div class="mb-3">
+              <label for="tiradaejemplares" class="form-label">Tirada</label>
+              <input type="text" name="tiradaejemplares" id="tiradaejemplares" class="form-control" tabindex="1" value="<%= libros.tiradaejemplares %>" >
+            </div>
+            <div class="mb-3">
+              <label for="paginatapa" class="form-label">Páginas Interior + Tapa</label>
+              <input type="text" name="paginatapa" id="paginatapa" class="form-control" tabindex="1" value="<%= libros.paginatapa %>">
+            </div>
+          
+            <div class="mb-3">
+              <label for="color" class="form-label">Color / ByN	</label>
+              <input type="text" name="color" id="color" class="form-control" tabindex="1" value="<%= libros.color %>">
+             </div>
+            <div class="mb-3">
+              <label for="up" class="form-label">UPs</label>
+              <input type="text" name="up" id="up" class="form-control" tabindex="1" value="<%= libros.up %>" >
+            </div>            
+            <div class="mb-3">
+              <label for="encuadernacion" class="form-label">Encuadernación</label>
+              <input type="text" name="encuadernacion" id="encuadernacion" class="form-control" tabindex="1" value="<%= libros.encuadernacion %>" >
+            </div>
+          
+            <div class="mb-3">
+              <label for="solapa" class="form-label">Solapas</label>
+              <input type="text" name="solapa" id="solapa" class="form-control" tabindex="1" value="<%= libros.solapa %>">
+             </div>
+            <div class="mb-3">
+              <label for="refile" class="form-label">Refile</label>
+              <input type="text" name="refile" id="refile" class="form-control" tabindex="1" value="<%= libros.refile %>">
+            </div>
+            <div class="mb-3">
+              <label for="embolsado" class="form-label">Embolsado</label>
+              <input type="text" name="embolsado" id="embolsado" class="form-control" tabindex="1" value="<%= libros.embolsado %>" >
+            </div>
+          
+            <div class="mb-3">
+              <label for="entrega" class="form-label">Entrega</label>
+              <input type="text" name="entrega" id="entrega" class="form-control" tabindex="1" value="<%= libros.entrega %>" >
+             </div>
+            <div class="mb-3">
+              <label for="palletizado" class="form-label">Palletizado</label>
+              <input type="text" name="palletizado" id="palletizado" class="form-control" tabindex="1" value="<%= libros.palletizado %>" >
+            </div>  
+            <div class="mb-3">
+              <label for="entregaarchivos" class="form-label">Entrega de Archivos</label>
+              <input type="date" name="entregaarchivos" id="entregaarchivos" class="form-control" tabindex="1" value="<%= libros.entregaarchivos %>">
+            </div>
+            <div class="mb-3">
+              <label for="cierrearchivo" class="form-label">Cierre de Archivos</label>
+              <input type="date" name="cierrearchivo" id="cierrearchivo" class="form-control" tabindex="1" value="<%= libros.cierrearchivo %>" >
+             </div>
+            <div class="mb-3">
+              <label for="tirada" class="form-label">Tirada</label>
+              <input type="date" name="tirada" id="tirada" class="form-control" tabindex="1"value="<%= libros.tirada %>" >
+            </div>            
+            <div class="mb-3">
+              <label for="despachofinal" class="form-label">Despacho Final</label>
+              <input type="date" name="despachofinal" id="despachofinal" class="form-control" tabindex="1"  value="<%= libros.despachofinal %>">
+            </div>  
+            <div class="mb-3">
+              <label for="pliegoop" class="form-label">Pliego </label>
+              <input type="text" name="pliegoop" id="pliegoop" class="form-control" tabindex="1" value="<%= libros.pliegoop %>" >
+            </div>
+            <div class="mb-3">
+              <label for="numpliego" class="form-label">Numero De Pliego</label>
+              <input type="text" name="numpliego" id="numpliego" class="form-control" tabindex="1" value="<%= libros.numpliego %>" >
+             </div>
+            <div class="mb-3">
+              <label for="tipopapel" class="form-label">Tipo De Papel</label>
+              <input type="text" name="tipopapel" id="tipopapel" class="form-control" tabindex="1" value="<%= libros.tipopapel %>" >
+            </div>
+           
+            <div class="mb-3">
+              <label for="hojas" class="form-label">Tamaño y Gramaje</label>
+              <input type="text" name="hojas" id="hojas" class="form-control" tabindex="1" value="<%= libros.hojas %>">
+             </div>
+            <div class="mb-3">
+              <label for="hojaskgcolores" class="form-label">Total paginas, KG , Colores</label>
+              <input type="text" name="hojaskgcolores" id="hojaskgcolores" class="form-control" tabindex="1" value="<%= libros.hojaskgcolores %>">
+            </div>  
+            <div class="mb-3">
+              <label for="pliegoop1" class="form-label">Pliego</label>
+              <input type="text" name="pliegoop1" id="pliegoop1" class="form-control" tabindex="1" value="<%= libros.pliegoop1 %>" >
+            </div> 
+            <div class="mb-3">
+              <label for="numpliego1" class="form-label">Numero De Pliego</label>
+              <input type="text" name="numpliego1" id="numpliego1" class="form-control" tabindex="1" value="<%= libros.numpliego1 %>">
+            </div>
+            <div class="mb-3">
+              <label for="tipopapel1" class="form-label">Tipo De Papel</label>
+              <input type="text" name="tipopapel1" id="tipopapel1" class="form-control" tabindex="1" value="<%= libros.tipopapel1 %>" >
+            </div>
+            <div class="mb-3">
+              <label for="hoja1" class="form-label">Tamaño y Gramaje</label>
+              <input type="text" name="hoja1" id="hoja1" class="form-control" tabindex="1" value="<%= libros.hoja1 %>" >
+            </div>  
+            <div class="mb-3">
+              <label for="hojaskgcolores1" class="form-label">Total paginas, KG , Colores</label>
+              <input type="text" name="hojaskgcolores1" id="hojaskgcolores1" class="form-control" tabindex="1" value="<%= libros.hojaskgcolores1 %>">
+             </div>
+                      
+            <div class="mb-3">
+              <label for="nip" class="form-label">Nip</label>
+              <input type="text" name="nip" id="nip" class="form-control" tabindex="1" value="<%= libros.nip %>" >
+            </div>  
+            <div class="mb-3">
+              <label for="acabadolibro" class="form-label">Acabado Gral</label>
+              <input type="text" name="acabadolibro" id="acabadolibro" class="form-control" tabindex="1" value="<%= libros.acabadolibro %>" >
+            </div>
+            <div class="mb-3">
+              <label for="acabadotapa" class="form-label">Acabado Tapa:</label>
+              <input type="text" name="acabadotapa" id="acabadotapa" class="form-control" tabindex="1" value="<%= libros.acabadotapa %>" >
+             </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripcion</label>
+              <input type="text" name="descripcion" id="descripcion" class="form-control" tabindex="1" value="<%= libros.descripcion %>" >
+            </div>
+
+            <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+            <a href="/" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+</div>
+<%}%>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>  
+  </body>
+</html>

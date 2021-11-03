@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.87.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+
+    <title>Login con Node + JWT + MySQL</title>
+    <!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#" style="background-color: brown;">RICOH ARGENTINA</a> 
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a type="button" class="px-3 btn btn-danger" href="logout">Logout</a>
+    </div>
+  </div>
+</header>
+<div class="container-fluid">
+  <div class="row">
+    
+    <!-- Contenido principal   -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Dashboard</h2>
+        
+      </div> 
+    </main>
+  </div>
+</div>
+<% if (libros){ %>
+<div class="container mt-4" style="border-color: #28a745;">
+    <div class="card border-secondary" style="border-color: #28a745;" >
+    <div class="card-header" style="text-align: center; background-color: #28a745;">Orden Para El Libro <%= libros.libro %> </div>
+    <div class="card-body" style="border-color: #28a745;">
+        <form action="/update" method="POST">
+            <table style="border-color: #28a745;">
+               <th  scope="col" width="50%">
+            <input hidden type="text" name="id" id="id" value="<%= libros.id %>">
+            <div class="mb-3">
+                <label for="prioridad" class="form-label">Prioridad</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.prioridad %></h1>
+            </div>
+            <div class="mb-3">
+                <label for="estado" class="form-label" >Estado</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.estado %></h1>
+            </div>
+            <div class="mb-3">
+                <label for="libro" class="form-label">Libro</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.libro %></h1>    
+            </div>
+            <div class="mb-3">
+                <label for="fechaentrega" class="form-label">Fecha De Entrega</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.fechaentrega %></h1> 
+            </div>
+            <div class="mb-3">
+                <label for="fechapentrega" class="form-label">Fecha Probable De Entrega</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.fechapentrega %></h1>
+            </div>
+            <div class="mb-3">
+                <label for="pliego" class="form-label">Pliego</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.pliego %></h1>
+            </div>
+            <div class="mb-3">
+                <label for="tirajeCondemasia" class="form-label">Tiraje Con Demasia</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.tirajeCondemasia %></h1>
+            </div>
+            
+            <div class="mb-3">
+                <label for="tirajecliente" class="form-label">Se Entrega Al Cliente</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.tirajecliente %></h1>
+            </div>
+            <div class="mb-3">
+                <label for="tirajeosa" class="form-label">Se Entrega A OSA</label>
+                <h1  class="form-control" tabindex="1" ><%= libros.tirajeosa %></h1> 
+            </div>
+           
+            <div class="mb-3"><label for="cerrado" class="form-label">Seccion Orden De Trabajo</label></div>
+            <div class="mb-3">
+              <label for="cerrado" class="form-label">Cerrado (en mm.)</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.cerrado %></h1> 
+            </div>
+        
+            <div class="mb-3">
+              <label for="abierto" class="form-label">Abierto (en mm.)</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.abierto %></h1> 
+             </div>
+            <div class="mb-3">
+              <label for="tiradaejemplares" class="form-label">Tirada</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.tiradaejemplares %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="paginatapa" class="form-label">Páginas Interior + Tapa</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.paginatapa %></h1>
+            </div>
+          
+            <div class="mb-3">
+              <label for="color" class="form-label">Color / ByN	</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.color %></h1>
+             </div>
+            <div class="mb-3">
+              <label for="up" class="form-label">UPs</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.up %></h1>
+            </div>            
+            <div class="mb-3">
+              <label for="encuadernacion" class="form-label">Encuadernación</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.encuadernacion %></h1>
+            </div>
+          
+            <div class="mb-3">
+              <label for="solapa" class="form-label">Solapas</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.solapa %></h1>
+             </div>
+            <div class="mb-3">
+              <label for="refile" class="form-label">Refile</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.refile %></h1>
+            </div>
+       
+            <div class="mb-3">
+              <label for="embolsado" class="form-label">Embolsado</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.embolsado %></h1>
+            </div>
+       
+            <div class="mb-3">
+              <label for="entrega" class="form-label">Entrega</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.entrega %></h1>
+             </div>
+            </th>
+            <th  scope="col" width="50%">
+            <div class="mb-3">
+              <label for="palletizado" class="form-label">Palletizado</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.palletizado %></h1>
+            </div>  
+      
+            <div class="mb-3">
+              <label for="entregaarchivos" class="form-label">Entrega de Archivos</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.entregaarchivos %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="cierrearchivo" class="form-label">Cierre de Archivos</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.cierrearchivo %></h1>
+             </div>
+            <div class="mb-3">
+              <label for="tirada" class="form-label">Tirada</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.tirada %></h1>
+            </div>            
+            <div class="mb-3">
+              <label for="despachofinal" class="form-label">Despacho Final</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.despachofinal %></h1>
+            </div>  
+            <div class="mb-3">
+              <label for="pliegoop" class="form-label">Pliego </label>
+              <h1  class="form-control" tabindex="1" ><%= libros.pliegoop %></h1>
+            </div>
+          
+            <div class="mb-3">
+              <label for="numpliego" class="form-label">Numero De Pliego</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.numpliego %></h1>
+             </div>
+            <div class="mb-3">
+              <label for="tipopapel" class="form-label">Tipo De Papel</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.tipopapel %></h1>
+            </div>
+           
+            <div class="mb-3">
+              <label for="hojas" class="form-label">Tamaño y Gramaje</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.hojas %></h1>
+             </div>
+            <div class="mb-3">
+              <label for="hojaskgcolores" class="form-label">Total paginas, KG , Colores</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.hojaskgcolores %></h1>
+            </div>  
+            <div class="mb-3">
+              <label for="pliegoop1" class="form-label">Pliego</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.pliegoop1 %></h1>
+            </div> 
+            <div class="mb-3">
+              <label for="numpliego1" class="form-label">Numero De Pliego</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.numpliego1 %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="tipopapel1" class="form-label">Tipo De Papel</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.tipopapel1 %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="hoja1" class="form-label">Tamaño y Gramaje</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.hoja1 %></h1>
+            </div>  
+            <div class="mb-3">
+              <label for="hojaskgcolores1" class="form-label">Total paginas, KG , Colores</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.hojaskgcolores1 %></h1>
+             </div>
+                      
+            <div class="mb-3">
+              <label for="nip" class="form-label">Nip</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.nip %></h1>
+            </div>  
+            <div class="mb-3">
+              <label for="acabadolibro" class="form-label">Acabado Gral</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.acabadolibro %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="acabadotapa" class="form-label">Acabado Tapa:</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.acabadotapa %></h1>
+             </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripcion</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.descripcion %></h1>
+            </div>
+        
+            <a class="btn btn-outline-danger" tabindex="5" href="/get-factura-pedido/<%= libros.id %>" style="font-size: 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16">
+              <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+              <path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
+            </svg>   Imprimir</a>
+            <a href="/" class="btn btn-secondary">Volver</a>
+            
+        </th>
+        </table>
+        </form>
+    </div>
+</div>
+</div>
+<%}%>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>  
+  </body>
+</html>
