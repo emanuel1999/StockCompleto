@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const conexion = require('../database/db')
 const authController = require('../controllers/authController')
-
+const PDF =require('pdfkit-construct');
 
 //router para las vistas
 router.get('/', authController.isAuthenticated, (req, res)=>{    
@@ -65,14 +65,19 @@ router.get('/orden/:id',authController.isAuthenticated, (req,res)=>{
 //eliminar 
 router.get('/delete/:id',authController.isAuthenticated,(req,res)=>{
     const id=req.params.id;
-    conexion.query('DELETE FROM libros WHERE id = ?', [id],(error,results)=>{
-        if(error){
-            console.log(error);
-        }else{ res.redirect('/');
-        }
-    })
-})
+            conexion.query('DELETE FROM libros WHERE id=?', [id],(error,results)=>{
+                if(error){
+                    console.log(error);
+                }else{ res.redirect('/');
+                }
+            })
+         
+        
+      });
+   
+
 
 router.get('/get-factura-pedido/:id',authController.getFacturaPedido);
+
 
 module.exports = router

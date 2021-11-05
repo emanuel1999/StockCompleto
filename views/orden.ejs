@@ -76,6 +76,10 @@
                 <h1  class="form-control" tabindex="1" ><%= libros.estado %></h1>
             </div>
             <div class="mb-3">
+              <label for="editorial" class="form-label">Editorial</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.editorial %></h1>
+          </div>
+            <div class="mb-3">
                 <label for="libro" class="form-label">Libro</label>
                 <h1  class="form-control" tabindex="1" ><%= libros.libro %></h1>    
             </div>
@@ -106,19 +110,33 @@
             </div>
            
             <div class="mb-3"><label for="cerrado" class="form-label">Seccion Orden De Trabajo</label></div>
+            
+            <div class="mb-3">
+              <label for="tacocorte" class="form-label">Taco A Cortar </label>
+              <h1  class="form-control" tabindex="1" ><%= libros.tacocorte %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="volumentaco" class="form-label">Volumen De Taco </label>
+              <h1  class="form-control" tabindex="1" ><%= libros.volumentaco %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="tamañopdf" class="form-label">Tamaño De PDF A Imprimir</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.tamañopdf %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="provedortapa" class="form-label">Provedor Tapa</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.provedortapa %></h1>
+            </div>
+            <div class="mb-3">
+              <label for="provedorinterior" class="form-label">Provedor Interior</label>
+              <h1  class="form-control" tabindex="1" ><%= libros.provedorinterior %></h1>
+            </div>
             <div class="mb-3">
               <label for="cerrado" class="form-label">Cerrado (en mm.)</label>
               <h1  class="form-control" tabindex="1" ><%= libros.cerrado %></h1> 
             </div>
         
-            <div class="mb-3">
-              <label for="abierto" class="form-label">Abierto (en mm.)</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.abierto %></h1> 
-             </div>
-            <div class="mb-3">
-              <label for="tiradaejemplares" class="form-label">Tirada</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.tiradaejemplares %></h1>
-            </div>
+           
             <div class="mb-3">
               <label for="paginatapa" class="form-label">Páginas Interior + Tapa</label>
               <h1  class="form-control" tabindex="1" ><%= libros.paginatapa %></h1>
@@ -128,10 +146,13 @@
               <label for="color" class="form-label">Color / ByN	</label>
               <h1  class="form-control" tabindex="1" ><%= libros.color %></h1>
              </div>
+            </th>
+            <th  scope="col" width="50%">
             <div class="mb-3">
               <label for="up" class="form-label">UPs</label>
               <h1  class="form-control" tabindex="1" ><%= libros.up %></h1>
             </div>            
+         
             <div class="mb-3">
               <label for="encuadernacion" class="form-label">Encuadernación</label>
               <h1  class="form-control" tabindex="1" ><%= libros.encuadernacion %></h1>
@@ -141,35 +162,11 @@
               <label for="solapa" class="form-label">Solapas</label>
               <h1  class="form-control" tabindex="1" ><%= libros.solapa %></h1>
              </div>
-            <div class="mb-3">
-              <label for="refile" class="form-label">Refile</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.refile %></h1>
-            </div>
-       
-            <div class="mb-3">
-              <label for="embolsado" class="form-label">Embolsado</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.embolsado %></h1>
-            </div>
-       
-            <div class="mb-3">
-              <label for="entrega" class="form-label">Entrega</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.entrega %></h1>
-             </div>
-            </th>
-            <th  scope="col" width="50%">
-            <div class="mb-3">
-              <label for="palletizado" class="form-label">Palletizado</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.palletizado %></h1>
-            </div>  
-      
+          
             <div class="mb-3">
               <label for="entregaarchivos" class="form-label">Entrega de Archivos</label>
               <h1  class="form-control" tabindex="1" ><%= libros.entregaarchivos %></h1>
             </div>
-            <div class="mb-3">
-              <label for="cierrearchivo" class="form-label">Cierre de Archivos</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.cierrearchivo %></h1>
-             </div>
             <div class="mb-3">
               <label for="tirada" class="form-label">Tirada</label>
               <h1  class="form-control" tabindex="1" ><%= libros.tirada %></h1>
@@ -179,14 +176,12 @@
               <h1  class="form-control" tabindex="1" ><%= libros.despachofinal %></h1>
             </div>  
             <div class="mb-3">
-              <label for="pliegoop" class="form-label">Pliego </label>
+              <label  class="form-label">Seccion Taco</label>
+              </div>
+            <div class="mb-3">
+              <label for="pliegoop" class="form-label">Taco </label>
               <h1  class="form-control" tabindex="1" ><%= libros.pliegoop %></h1>
             </div>
-          
-            <div class="mb-3">
-              <label for="numpliego" class="form-label">Numero De Pliego</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.numpliego %></h1>
-             </div>
             <div class="mb-3">
               <label for="tipopapel" class="form-label">Tipo De Papel</label>
               <h1  class="form-control" tabindex="1" ><%= libros.tipopapel %></h1>
@@ -201,13 +196,12 @@
               <h1  class="form-control" tabindex="1" ><%= libros.hojaskgcolores %></h1>
             </div>  
             <div class="mb-3">
-              <label for="pliegoop1" class="form-label">Pliego</label>
+              <label  class="form-label">Seccion Tapa</label>
+              </div>
+            <div class="mb-3">
+              <label for="pliegoop1" class="form-label">Pliego Tapa</label>
               <h1  class="form-control" tabindex="1" ><%= libros.pliegoop1 %></h1>
             </div> 
-            <div class="mb-3">
-              <label for="numpliego1" class="form-label">Numero De Pliego</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.numpliego1 %></h1>
-            </div>
             <div class="mb-3">
               <label for="tipopapel1" class="form-label">Tipo De Papel</label>
               <h1  class="form-control" tabindex="1" ><%= libros.tipopapel1 %></h1>
@@ -219,12 +213,7 @@
             <div class="mb-3">
               <label for="hojaskgcolores1" class="form-label">Total paginas, KG , Colores</label>
               <h1  class="form-control" tabindex="1" ><%= libros.hojaskgcolores1 %></h1>
-             </div>
-                      
-            <div class="mb-3">
-              <label for="nip" class="form-label">Nip</label>
-              <h1  class="form-control" tabindex="1" ><%= libros.nip %></h1>
-            </div>  
+             </div>  
             <div class="mb-3">
               <label for="acabadolibro" class="form-label">Acabado Gral</label>
               <h1  class="form-control" tabindex="1" ><%= libros.acabadolibro %></h1>

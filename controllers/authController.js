@@ -100,6 +100,7 @@ exports.isAuthenticated = async (req, res, next)=>{
 }
 exports.save= (req,res)=>{
     const estado=req.body.estado;
+    const editorial=req.body.editorial;
     const libro=req.body.libro;
     const fechaentrega=req.body.fechaentrega;
     const fechapentrega=req.body.fechapentrega;
@@ -107,42 +108,38 @@ exports.save= (req,res)=>{
     const tirajeCondemasia=req.body.tirajeCondemasia;
     const tirajecliente=req.body.tirajecliente;
     const tirajeosa=req.body.tirajeosa;
+    const tacocorte=req.body.tacocorte;
+    const tamañopdf=req.body.tamañopdf;
     const prioridad=req.body.prioridad;
     const cerrado=req.body.cerrado;
-    const abierto=req.body.abierto;
     const paginatapa=req.body.paginatapa;
     const color=req.body.color;
     const up=req.body.up;
     const encuadernacion=req.body.encuadernacion;
     const solapa=req.body.solapa;
-    const refile=req.body.refile;
-    const embolsado=req.body.embolsado;
-    const entrega=req.body.entrega;
-    const palletizado=req.body.palletizado;
     const entregaarchivos=req.body.entregaarchivos;
-    const cierrearchivo=req.body.cierrearchivo;
     const tirada=req.body.tirada;
     const despachofinal=req.body.despachofinal;
     const pliegoop=req.body.pliegoop;
-    const numpliego=req.body.numpliego;
     const tipopapel=req.body.tipopapel;
     const hojas=req.body.hojas;
     const hojaskgcolores=req.body.hojaskgcolores;
     const pliegoop1=req.body.pliegoop1;
-    const numpliego1=req.body.numpliego1;
     const tipopapel1=req.body.tipopapel1;
     const hojaskgcolores1=req.body.hojaskgcolores1;
     const hoja1=req.body.hoja1;
-    const nip=req.body.nip;
     const acabadolibro=req.body.acabadolibro;
     const acabadotapa=req.body.acabadotapa;
     const descripcion=req.body.descripcion;
-    const tiradaejemplares=req.body.tiradaejemplares;
+    const provedortapa=req.body.provedortapa; 
+    const provedorinterior= req.body.provedorinterior;
+    const volumentaco=req.body.volumentaco;
     conexion.query('INSERT INTO libros SET ?',{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
-    pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,abierto:abierto,paginatapa:paginatapa,color:color,
-    up:up,encuadernacion:encuadernacion,solapa:solapa,refile:refile,embolsado:embolsado,entrega:entrega,palletizado:palletizado,entregaarchivos:entregaarchivos,
-    cierrearchivo:cierrearchivo,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,numpliego:numpliego,tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,
-    pliegoop1:pliegoop1,numpliego1:numpliego1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,nip:nip,acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,tiradaejemplares:tiradaejemplares}, (error, results)=>{
+    pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
+    up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
+    tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
+    acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,editorial:editorial,tacocorte:tacocorte,tamañopdf:tamañopdf,
+    provedortapa:provedortapa,provedorinterior:provedorinterior,volumentaco:volumentaco}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -153,6 +150,7 @@ exports.save= (req,res)=>{
 exports.update=(req,res)=>{
     const id=req.body.id;
     const estado=req.body.estado;
+    const editorial=req.body.editorial;
     const libro=req.body.libro;
     const fechaentrega=req.body.fechaentrega;
     const fechapentrega=req.body.fechapentrega;
@@ -160,42 +158,38 @@ exports.update=(req,res)=>{
     const tirajeCondemasia=req.body.tirajeCondemasia;
     const tirajecliente=req.body.tirajecliente;
     const tirajeosa=req.body.tirajeosa;
+    const tacocorte=req.body.tacocorte;
+    const tamañopdf=req.body.tamañopdf;
     const prioridad=req.body.prioridad;
     const cerrado=req.body.cerrado;
-    const abierto=req.body.abierto;
     const paginatapa=req.body.paginatapa;
     const color=req.body.color;
     const up=req.body.up;
     const encuadernacion=req.body.encuadernacion;
     const solapa=req.body.solapa;
-    const refile=req.body.refile;
-    const embolsado=req.body.embolsado;
-    const entrega=req.body.entrega;
-    const palletizado=req.body.palletizado;
     const entregaarchivos=req.body.entregaarchivos;
-    const cierrearchivo=req.body.cierrearchivo;
     const tirada=req.body.tirada;
     const despachofinal=req.body.despachofinal;
     const pliegoop=req.body.pliegoop;
-    const numpliego=req.body.numpliego;
     const tipopapel=req.body.tipopapel;
     const hojas=req.body.hojas;
     const hojaskgcolores=req.body.hojaskgcolores;
     const pliegoop1=req.body.pliegoop1;
-    const numpliego1=req.body.numpliego1;
     const tipopapel1=req.body.tipopapel1;
     const hojaskgcolores1=req.body.hojaskgcolores1;
     const hoja1=req.body.hoja1;
-    const nip=req.body.nip;
     const acabadolibro=req.body.acabadolibro;
     const acabadotapa=req.body.acabadotapa;
-    const descripcion=req.body.descripcion;
-    const tiradaejemplares=req.body.tiradaejemplares;    
+    const descripcion=req.body.descripcion;   
+    const provedortapa=req.body.provedortapa; 
+    const provedorinterior= req.body.provedorinterior;
+    const volumentaco=req.body.volumentaco;
     conexion.query('UPDATE libros SET ? WHERE id= ?',[{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
-        pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,abierto:abierto,paginatapa:paginatapa,color:color,
-        up:up,encuadernacion:encuadernacion,solapa:solapa,refile:refile,embolsado:embolsado,entrega:entrega,palletizado:palletizado,entregaarchivos:entregaarchivos,
-        cierrearchivo:cierrearchivo,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,numpliego:numpliego,tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,
-        pliegoop1:pliegoop1,numpliego1:numpliego1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,nip:nip,acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,tiradaejemplares:tiradaejemplares}, id],(error, results)=>{
+        pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
+        up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
+        tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
+        acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,editorial:editorial,tacocorte:tacocorte,tamañopdf:tamañopdf,provedortapa:provedortapa,
+        provedorinterior:provedorinterior,volumentaco:volumentaco}, id],(error, results)=>{
             if(error){
                 console.log(error);
             }else {
@@ -214,62 +208,187 @@ pedido.findLibro= async (id) =>{
 }
 
 exports.getFacturaPedido= async (req,res)=>{
-
-    let libros=await pedido.findLibro(req.params.id);
-
-        libros=libros[0];
-         
-    
-    
-    
+    const id=req.params.id;
+    conexion.query('SELECT * FROM libros WHERE id= ?', [id],(error,results)=>{
+        if(error){
+            console.log(error);
+        }else{ 
+     
+        libro=results[0]['libro'];
+        tirajeCondemasia=results[0]['tirajeCondemasia'];
+        solapa=results[0]['solapa'];
+        editorial=results[0]['editorial'];    
+        hojas= results[0]['hojas'];   
+        hoja1= results[0]['hoja1'];  
+        tipopapel=results[0]['tipopapel'];
+        tipopapel1=results[0]['tipopapel1'];
+        tirajecliente=results[0]['tirajecliente'];  
+        tirajeosa= results[0]['tirajeosa'];   
+        acabadolibro= results[0]['acabadolibro'];
+        acabadotapa= results[0]['acabadotapa']; 
+        hojaskgcolores= results[0]['hojaskgcolores'];
+        hojaskgcolores1= results[0]['hojaskgcolores1'];
+        fechaentrega= results[0]['fechaentrega'];    
+        provedortapa= results[0]['provedortapa']; 
+        provedorinterior= results[0]['provedorinterior'];
+        cerrado=results[0]['cerrado'];
+        tacocorte=results[0]['tacocorte'];
+        tamañopdf=results[0]['tamañopdf'];
+             
     const doc = new PDF ({bufferPage:true});
     const filename= `Factura${Date.now()}.pdf `;
     
 
     const stream= res.writeHead(200, {
         'Content-Type': 'application/pdf',
-        'Content-disposition': `attachament;filename=${filename}` 
+        'Content-disposition': 'attachament;filename='+libro+'.pdf' 
 
     });
     doc.on('data', (data)=>{stream.write(data)});
     doc.on('end', ()=>{stream.end()});
     //doc.pipe(fs.createWriteStream('factura.pdf'));
     
-    doc.fontSize(12);
     
-    doc.text('NRO: 123456',{
-        width:420,
-        align:'left'
-    });
+    
+    
+   
     //agregando tablas
-    const platos=[
-        {
-            nro:1,
-            descripcion:'charque',
-            precio: 13.5,
-            cantidad:37.5
-        }
+   
+    const height = doc.currentLineHeight();
+
+    doc.setDocumentHeader({}, ()=>{
+        
+    
+    doc.fill("#FF0000")
+    .fontSize(16)
+    .moveDown(-2).text('Ricoh Argentina')
+    .moveDown(35).fontSize(6).text('by INGENIERIA DE PLANTA')
+    
+
+    })
+    
+    const editorial1=[{
+        
+        libro:libro,
+        tirajeCondemasia:tirajeCondemasia,
+        solapa:solapa,
+        cerrado:cerrado,
+        fechaentrega:fechaentrega,
+        editorial:editorial,
+        hoja1:hoja1,
+        tipopapel1:tipopapel1 ,
+        hojaskgcolores1:hojaskgcolores1,
+        acabadotapa:acabadotapa,
+        hojas:hojas,
+        acabadolibro:acabadolibro,
+        tacocorte:tacocorte,
+        tamañopdf:tamañopdf,
+        tipopapel:tipopapel,
+        provedortapa:provedortapa,
+        provedorinterior:provedortapa
+    }
     ]
-    doc.text(`libros ${libros.libro}`);
     doc.addTable([
-        {key: 'nro', label:'Nro', align: 'left'},
-        {key: 'descripcion', label:'Nro', align: 'left'},
-        {key: 'precio', label:'Precio Unit', align: 'left'},
-        {key: 'cantidad', label:'Cantidad', align: 'left'},
-        {key: 'subtotal', label:'Sub Total', align: 'right'},
-    ],platos,{
-        border: null,
+        {key: 'libro', label:'Orden de trabajo: Titulo ', align: 'center'},
+        {key: 'editorial', label:'Editorial', align: 'center'},
+        
+        
+    ],editorial1,{
+        border: {size: 1, color: '#000000'},
         width: "fill_body",
-        striped: true,
-        stripedColors: ["#f6f6f6", "#d6c4dd"],
-        cellsPadding: 10,
-        marginLeft: 45,
-        marginRight: 45,
+        //striped: true,
+        stripedColors: ["#cdcdcd"],
+        cellsPadding: 12,
+        cellsFontSize : 10,
+        marginLeft: 12,
+        marginRight: 12,
+        headAlign: 'center'
+    }); 
+   
+    doc.addTable([
+        {key: 'tirajeCondemasia', label:'Tirada', align: 'center'},
+        {key: 'solapa', label:'Solapa', align: 'center'},
+        {key: 'cerrado', label:'Tamaño Final', align: 'center'},
+        {key: 'fechaentrega', label:'Fecha de entrega', align: 'center'},
+        
+    ],editorial1,{
+        border: {size: 1, color: '#000000'},
+        width: "fill_body",
+        //striped: true,
+        stripedColors: ["#cdcdcd"],
+        cellsPadding: 12,
+        cellsFontSize : 10,
+        marginLeft: 12,
+        marginRight: 12,
+        headAlign: 'center'
+    }); 
+    //tapa
+    doc.addTable([
+        
+        {key: 'tirajeCondemasia', label:'Seccion Tapa', align: 'center'},
+        {key: 'tipopapel1',label:'Tipo Papel ',align:'center'},
+        {key: 'hoja1',label:'Tamaño De Resma y Gramaje',align:'center'},
+        {key: 'acabadotapa',label:'Acabado De Laminado',align:'center'},
+        
+    ],editorial1,{
+        border: {size: 1, color: '#000000'},
+        width: "fill_body",
+        //striped: true,
+        stripedColors: ["#cdcdcd"],
+        cellsPadding: 12,
+        cellsFontSize : 10,
+        marginLeft: 12,
+        marginRight: 12,
         headAlign: 'center'
     });
+    //interior
+    doc.fontSize(20).addTable([
+        
+        {key: 't3', label:'Seccion Taco', align: 'center'},
+        {key: 'tipopapel',label:'Tipo Papel ',align:'center'},
+        {key: 'hojas',label:'Tamaño Bobina y Gramaje',align:'center'},
+        {key: 'tamañopdf',label:'Tamaño PDF',align:'center'},
+        {key: 'tacocorte',label:'Taco Corte ',align:'center'},
+        
+        
+    ],editorial1,{
+        border: {size: 1, color: '#000000'},
+        width: "fill_body",
+        //striped: true,
+        stripedColors: ["#cdcdcd"],
+        cellsPadding: 20,
+        cellsFontSize : 12,
+        marginLeft: 12,
+        marginRight: 12,
+        headAlign: 'center'
+    });
+//provedores y acabado 
+doc.fontSize(20).addTable([
+        
+    
+    {key: 'acabadolibro',label:'Acabado General',align:'center'},
+    {key: 'provedortapa', label:'Provedor Tapa', align: 'center'},
+    {key: 'provedorinterior',label:'Provedor Taco ',align:'center'},
+    
+    
+],editorial1,{
+    border: {size: 1, color: '#000000'},
+    width: "fill_body",
+    //striped: true,
+    stripedColors: ["#cdcdcd"],
+    cellsPadding: 20,
+    cellsFontSize : 12,
+    marginLeft: 12,
+    marginRight: 12,
+    headAlign: 'center'
+});
+
 
     doc.render();
 
     doc.end();
+}  
+})
+    
 
 }

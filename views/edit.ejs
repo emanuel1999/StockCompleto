@@ -78,6 +78,10 @@
                 </select>
             </div>
             <div class="mb-3">
+              <label for="editorial" class="form-label">Editorial</label>
+              <input type="text" name="editorial" id="editorial" class="form-control" tabindex="1" required value="<%= libros.editorial %>">
+          </div>
+            <div class="mb-3">
                 <label for="libro" class="form-label">Libro</label>
                 <input type="text" name="libro" id="libro" class="form-control" tabindex="1" value="<%= libros.libro %>">
             </div>
@@ -103,28 +107,40 @@
             </div>
             
             <div class="mb-3">
-                <label for="tirajecliente" class="form-label">Se Entrega Al Cliente</label>
+                <label for="tirajecliente" class="form-label" >Se Entrega Al Cliente</label>
                 <input type="number" name="tirajecliente" id="tirajecliente" class="form-control" tabindex="1" value="<%= libros.tirajecliente %>">
             </div>
             <div class="mb-3">
                 <label for="tirajeosa" class="form-label">Se Entrega A OSA</label>
                 <input type="number" name="tirajeosa" id="tirajeosa" class="form-control" tabindex="1" value="<%= libros.tirajeosa %>">
             </div>
-            ----
-            <div class="mb-3"><label for="cerrado" class="form-label">Seccion Orden De Trabajo</label></div>
+            
+            <div class="mb-3"><label for="cerrado" class="form-label" style="text-align: center;">Seccion Orden De Trabajo</label></div>
+            <div class="mb-3">
+              <label for="tacocorte" class="form-label">Taco A Cortar </label>
+              <input type="text" name="tacocorte" id="tacocorte" class="form-control" tabindex="1" value="<%= libros.tacocorte %>">
+            </div>
+            <div class="mb-3">
+              <label for="volumentaco" class="form-label">Volumen De Taco </label>
+              <input type="text" name="volumentaco" id="volumentaco" class="form-control" tabindex="1" value="<%= libros.volumentaco %>">
+            </div>
+            <div class="mb-3">
+              <label for="tamañopdf" class="form-label">Tamaño De PDF A Imprimir</label>
+              <input type="text" name="tamañopdf" id="tamañopdf" class="form-control" tabindex="1" value="<%= libros.tamañopdf %>" >
+            </div>
+            <div class="mb-3">
+              <label for="provedortapa" class="form-label">Provedor Tapa</label>
+              <input type="text" name="provedortapa" id="provedortapa" class="form-control" tabindex="1" value="<%= libros.provedortapa %>" >
+            </div>
+            <div class="mb-3">
+              <label for="provedorinterior" class="form-label">Provedor Interior</label>
+              <input type="text" name="provedorinterior" id="provedorinterior" class="form-control" tabindex="1" value="<%= libros.provedorinterior %>">
+            </div>
             <div class="mb-3">
               <label for="cerrado" class="form-label">Cerrado (en mm.)</label>
               <input type="text" name="cerrado" id="cerrado" class="form-control" tabindex="1" value="<%= libros.cerrado %>">
             </div>
           
-            <div class="mb-3">
-              <label for="abierto" class="form-label">Abierto (en mm.)</label>
-              <input type="text" name="abierto" id="abierto" class="form-control" tabindex="1" value="<%= libros.abierto %>" >
-             </div>
-            <div class="mb-3">
-              <label for="tiradaejemplares" class="form-label">Tirada</label>
-              <input type="text" name="tiradaejemplares" id="tiradaejemplares" class="form-control" tabindex="1" value="<%= libros.tiradaejemplares %>" >
-            </div>
             <div class="mb-3">
               <label for="paginatapa" class="form-label">Páginas Interior + Tapa</label>
               <input type="text" name="paginatapa" id="paginatapa" class="form-control" tabindex="1" value="<%= libros.paginatapa %>">
@@ -145,34 +161,16 @@
           
             <div class="mb-3">
               <label for="solapa" class="form-label">Solapas</label>
-              <input type="text" name="solapa" id="solapa" class="form-control" tabindex="1" value="<%= libros.solapa %>">
-             </div>
-            <div class="mb-3">
-              <label for="refile" class="form-label">Refile</label>
-              <input type="text" name="refile" id="refile" class="form-control" tabindex="1" value="<%= libros.refile %>">
-            </div>
-            <div class="mb-3">
-              <label for="embolsado" class="form-label">Embolsado</label>
-              <input type="text" name="embolsado" id="embolsado" class="form-control" tabindex="1" value="<%= libros.embolsado %>" >
-            </div>
-          
-            <div class="mb-3">
-              <label for="entrega" class="form-label">Entrega</label>
-              <input type="text" name="entrega" id="entrega" class="form-control" tabindex="1" value="<%= libros.entrega %>" >
-             </div>
-            <div class="mb-3">
-              <label for="palletizado" class="form-label">Palletizado</label>
-              <input type="text" name="palletizado" id="palletizado" class="form-control" tabindex="1" value="<%= libros.palletizado %>" >
-            </div>  
+              <select name="solapa" id="solapa" class="form-select" tabindex="2">
+                <option <%= libros.solapa =='Sin Solapa' ? "selected" : '' %> value="Sin Solapa">Sin Solapa</option>
+                <option <%= libros.solapa =='Con Solapa' ? "selected" : '' %> value="Con Solapa">Con Solapa</option>
+                </select>
+             </div> 
             <div class="mb-3">
               <label for="entregaarchivos" class="form-label">Entrega de Archivos</label>
               <input type="date" name="entregaarchivos" id="entregaarchivos" class="form-control" tabindex="1" value="<%= libros.entregaarchivos %>">
             </div>
-            <div class="mb-3">
-              <label for="cierrearchivo" class="form-label">Cierre de Archivos</label>
-              <input type="date" name="cierrearchivo" id="cierrearchivo" class="form-control" tabindex="1" value="<%= libros.cierrearchivo %>" >
-             </div>
-            <div class="mb-3">
+             <div class="mb-3">
               <label for="tirada" class="form-label">Tirada</label>
               <input type="date" name="tirada" id="tirada" class="form-control" tabindex="1"value="<%= libros.tirada %>" >
             </div>            
@@ -181,13 +179,12 @@
               <input type="date" name="despachofinal" id="despachofinal" class="form-control" tabindex="1"  value="<%= libros.despachofinal %>">
             </div>  
             <div class="mb-3">
-              <label for="pliegoop" class="form-label">Pliego </label>
+              <label  class="form-label">Seccion Taco</label>
+              </div>
+            <div class="mb-3">
+              <label for="pliegoop" class="form-label">Taco </label>
               <input type="text" name="pliegoop" id="pliegoop" class="form-control" tabindex="1" value="<%= libros.pliegoop %>" >
             </div>
-            <div class="mb-3">
-              <label for="numpliego" class="form-label">Numero De Pliego</label>
-              <input type="text" name="numpliego" id="numpliego" class="form-control" tabindex="1" value="<%= libros.numpliego %>" >
-             </div>
             <div class="mb-3">
               <label for="tipopapel" class="form-label">Tipo De Papel</label>
               <input type="text" name="tipopapel" id="tipopapel" class="form-control" tabindex="1" value="<%= libros.tipopapel %>" >
@@ -202,13 +199,12 @@
               <input type="text" name="hojaskgcolores" id="hojaskgcolores" class="form-control" tabindex="1" value="<%= libros.hojaskgcolores %>">
             </div>  
             <div class="mb-3">
-              <label for="pliegoop1" class="form-label">Pliego</label>
+              <label  class="form-label">Seccion Tapa</label>
+              </div>
+            <div class="mb-3">
+              <label for="pliegoop1" class="form-label">Pliego Tapa</label>
               <input type="text" name="pliegoop1" id="pliegoop1" class="form-control" tabindex="1" value="<%= libros.pliegoop1 %>" >
             </div> 
-            <div class="mb-3">
-              <label for="numpliego1" class="form-label">Numero De Pliego</label>
-              <input type="text" name="numpliego1" id="numpliego1" class="form-control" tabindex="1" value="<%= libros.numpliego1 %>">
-            </div>
             <div class="mb-3">
               <label for="tipopapel1" class="form-label">Tipo De Papel</label>
               <input type="text" name="tipopapel1" id="tipopapel1" class="form-control" tabindex="1" value="<%= libros.tipopapel1 %>" >
@@ -221,11 +217,6 @@
               <label for="hojaskgcolores1" class="form-label">Total paginas, KG , Colores</label>
               <input type="text" name="hojaskgcolores1" id="hojaskgcolores1" class="form-control" tabindex="1" value="<%= libros.hojaskgcolores1 %>">
              </div>
-                      
-            <div class="mb-3">
-              <label for="nip" class="form-label">Nip</label>
-              <input type="text" name="nip" id="nip" class="form-control" tabindex="1" value="<%= libros.nip %>" >
-            </div>  
             <div class="mb-3">
               <label for="acabadolibro" class="form-label">Acabado Gral</label>
               <input type="text" name="acabadolibro" id="acabadolibro" class="form-control" tabindex="1" value="<%= libros.acabadolibro %>" >
