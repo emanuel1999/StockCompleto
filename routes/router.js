@@ -3,7 +3,7 @@ const router = express.Router()
 const conexion = require('../database/db')
 const authController = require('../controllers/authController')
 const PDF =require('pdfkit-construct');
-
+const {authPage}=require ('../middlewares/middlewares');
 //router para las vistas
 router.get('/', authController.isAuthenticated, (req, res)=>{    
     //res.render('index', {user:req.user});
@@ -78,6 +78,6 @@ router.get('/delete/:id',authController.isAuthenticated,(req,res)=>{
 
 
 router.get('/get-factura-pedido/:id',authController.getFacturaPedido);
-
+//router.get('/permisos')
 
 module.exports = router

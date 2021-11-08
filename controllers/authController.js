@@ -261,8 +261,9 @@ exports.getFacturaPedido= async (req,res)=>{
     
     doc.fill("#FF0000")
     .fontSize(16)
-    .moveDown(-2).text('Ricoh Argentina')
-    .moveDown(35).fontSize(6).text('by INGENIERIA DE PLANTA')
+    .moveDown(-2).text('RICOH Argentina')
+    .moveDown(0).fontSize(6).text('by INGENIERIA DE PLANTA')
+    .moveDown(1).fontSize(18).text('Tiraje Para EL Cliente: '+ tirajecliente + ''+'  Tiraje Para OSA: ' + tirajeosa)
     
 
     })
@@ -285,7 +286,9 @@ exports.getFacturaPedido= async (req,res)=>{
         tamañopdf:tamañopdf,
         tipopapel:tipopapel,
         provedortapa:provedortapa,
-        provedorinterior:provedortapa
+        provedorinterior:provedortapa,
+        tirajecliente:tirajecliente,
+        tirajeosa:tirajeosa
     }
     ]
     doc.addTable([
@@ -382,6 +385,7 @@ doc.fontSize(20).addTable([
     marginRight: 12,
     headAlign: 'center'
 });
+
 
 
     doc.render();
