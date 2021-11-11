@@ -71,14 +71,12 @@
     <thead>
       <tr class="bg-primary text-white">
       <th scope="col">Prioridad</th>
-      <th scope="col">Estado</th>
+      <th scope="col">Estado De Impresion</th>
       <th scope="col">Libro</th>
-      <th scope="col">Fecha De Entrega</th>
-      <th scope="col">Fecha Probable De Entrega</th>
-      <th scope="col">Pliego</th>
-      <th scope="col">Tiraje Con Demasia</th>
-      <th scope="col">Se Entregan Al Cliente</th>
-      <th scope="col">Se Entregan A OSA</th>
+      <th scope="col">Tipo De Impresion</th>
+      <th scope="col">Tamaño Papel y Gramaje</th>
+      <th scope="col">Tamaño PDF</th>
+      <th scope="col">Taco Corte</th>
       <th scope="col">Volumen De TACO</th>
       </tr>
     </thead>
@@ -87,16 +85,14 @@
         <tr>
        <td><%=libros.prioridad%></td> 
        <td><%=libros.estado%></td> 
-       <td><a href="orden/<%=libros.id%>"><%=libros.libro%></a></td>
-       <td><%=libros.fechaentrega%></td> 
-       <td><%=libros.fechapentrega%></td> 
-       <td><%=libros.pliego%></td>
-       <td><%=libros.tirajeCondemasia%></td> 
-       <td><%=libros.tirajecliente%></td>
-       <td><%=libros.tirajeosa%></td>
+       <td><%=libros.libro%></td>
+       <td><%=libros.tipoimpresion%></td> 
+       <td><%=libros.hojas%></td> 
+       <td><%=libros.tamañopdf%></td>
+       <td><%=libros.tacocorte%></td>
        <td><%=libros.volumentaco%></td>
        <td>
-         <a href="/edit/<%=libros.id%>" class="btn btn-outline-info">Editar</a>
+         <a href="/edit2/<%=libros.id%>" class="btn btn-outline-info">Editar</a>
          <a href="/delete/<%=libros.id%>" class="btn btn-outline-danger">Borrar</a>
        </td>
       </tr>
@@ -105,6 +101,17 @@
   </table>
 </div>
 
+
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    
+  </body>
+</html>
 
 
 
