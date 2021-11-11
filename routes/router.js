@@ -3,7 +3,7 @@ const router = express.Router()
 const conexion = require('../database/db')
 const authController = require('../controllers/authController')
 const PDF =require('pdfkit-construct');
-const {authPage}=require ('../middlewares/middlewares');
+
 //router para las vistas
 router.get('/', authController.isAuthenticated, (req, res)=>{    
     //res.render('index', {user:req.user});
@@ -74,7 +74,17 @@ router.get('/delete/:id',authController.isAuthenticated,authController.isAdmin,(
          
         
       });
-   
+router.get('/impresion', authController.isAuthenticated, (req, res)=>{    
+    //res.render('index', {user:req.user});
+    
+    conexion.query('SELECT * FROM libros ORDER BY prioridad',(error,results)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.render('impresion',{results:results, user:req.user});
+        }
+    })
+})   
 
 
 router.get('/get-factura-pedido/:id',authController.getFacturaPedido);
