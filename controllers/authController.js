@@ -98,6 +98,28 @@ exports.isAuthenticated = async (req, res, next)=>{
         res.redirect('/login')        
     }
 }
+exports.isAdmin= async(req,res,next)=>{
+    if(req.cookies.jwt){
+        try {
+            const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+            conexion.query('SELECT * FROM users WHERE id = ?', [decodificada.id],(error,results)=>{
+                role=results[0].rol
+                if(role=="admin"){
+                    next()
+                }else{
+                    
+                    res.redirect("/");
+                }
+                
+            })
+        }catch{
+            res.redirect("/");
+        }
+    }
+
+}
+
+
 exports.save= (req,res)=>{
     const estado=req.body.estado;
     const editorial=req.body.editorial;

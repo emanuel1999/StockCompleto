@@ -36,13 +36,13 @@ router.get('/',authController.isAuthenticated, (req, res)=>{
 })
 
 // creamos registros
-router.get('/create',authController.isAuthenticated, (req,res)=>{
+router.get('/create',authController.isAuthenticated,authController.isAdmin, (req,res)=>{
     res.render('create');
 })
-router.post('/save',authController.save);
-router.post('/update',authController.update);
+router.post('/save',authController.isAuthenticated,authController.isAdmin,authController.save);
+router.post('/update',authController.isAuthenticated,authController.isAdmin,authController.update);
 //editar
-router.get('/edit/:id',authController.isAuthenticated, (req,res)=>{
+router.get('/edit/:id',authController.isAuthenticated,authController.isAdmin, (req,res)=>{
     const id= req.params.id;
     conexion.query('SELECT * FROM libros WHERE id=?',[id], (error,results)=>{
         if(error){
@@ -58,12 +58,12 @@ router.get('/orden/:id',authController.isAuthenticated, (req,res)=>{
         if(error){
          throw error;
     }else{
-        res.render('orden',{libros:results[0]});
+        res.render('orden',{libros:results[0]});s
     }
     })
 })
 //eliminar 
-router.get('/delete/:id',authController.isAuthenticated,(req,res)=>{
+router.get('/delete/:id',authController.isAuthenticated,authController.isAdmin,(req,res)=>{
     const id=req.params.id;
             conexion.query('DELETE FROM libros WHERE id=?', [id],(error,results)=>{
                 if(error){
@@ -78,6 +78,6 @@ router.get('/delete/:id',authController.isAuthenticated,(req,res)=>{
 
 
 router.get('/get-factura-pedido/:id',authController.getFacturaPedido);
-//router.get('/permisos')
+
 
 module.exports = router
