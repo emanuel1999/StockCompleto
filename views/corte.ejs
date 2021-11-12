@@ -68,34 +68,28 @@
   <a href="/corte" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Corte</a>
   <a href="/encuadernado" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Encuadernado</a>
   <a href="/tapa" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Tapa</a>
-  <div><a style="font-size: 24px;text-align: center;">Inicio</a></div>
+  <div><a style="font-size: 24px;text-align: center;">Corte</a></div>
   <table class="table table-bordered table-striped text-center mt-4 ">
     <thead>
       <tr class="bg-primary text-white">
       <th scope="col">Prioridad</th>
-      <th scope="col">Estado</th>
+      <th scope="col">Estado De Corte</th>
       <th scope="col">Libro</th>
-      <th scope="col">Fecha De Entrega</th>
-      <th scope="col">Fecha Probable De Entrega</th>
-      <th scope="col">Pliego</th>
-      <th scope="col">Tiraje Con Demasia</th>
-      <th scope="col">Se Entregan Al Cliente</th>
-      <th scope="col">Se Entregan A OSA</th>
+      <th scope="col">Tamaño PDF</th>
+      <th scope="col">Taco Corte</th>
       <th scope="col">Volumen De TACO</th>
+      <th scope="col">Solapa</th>
       </tr>
     </thead>
     <tbody>
       <% results.forEach((libros)=> { %>
         <tr>
        <td><%=libros.prioridad%></td> 
-       <td><%=libros.estado%></td> 
-       <td><a href="orden/<%=libros.id%>"><%=libros.libro%></a></td>
-       <td><%=libros.fechaentrega%></td> 
-       <td><%=libros.fechapentrega%></td> 
-       <td><%=libros.pliego%></td>
-       <td><%=libros.tirajeCondemasia%></td> 
-       <td><%=libros.tirajecliente%></td>
-       <td><%=libros.tirajeosa%></td>
+       <td><a href="editCorte/<%=libros.id%>"><%=libros.estadocorte%></a></td> 
+       <td><%=libros.libro%></td>
+       <td><%=libros.hojas%></td> 
+       <td><%=libros.tamañopdf%></td>
+       <td><%=libros.tacocorte%></td>
        <td><%=libros.volumentaco%></td>
        <td>
          <a href="/edit/<%=libros.id%>" class="btn btn-outline-info">Editar</a>
@@ -118,3 +112,4 @@
     
   </body>
 </html>
+

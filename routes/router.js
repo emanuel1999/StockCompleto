@@ -41,6 +41,8 @@ router.get('/create',authController.isAuthenticated,authController.isAdmin, (req
 })
 router.post('/save',authController.isAuthenticated,authController.isAdmin,authController.save);
 router.post('/update',authController.isAuthenticated,authController.isAdmin,authController.update);
+router.post('/updateImpresion',authController.isAuthenticated,authController.updateEstadoIm);
+router.post('/updateCorte',authController.isAuthenticated,authController.updateEstadoCo);
 //editar
 router.get('/edit/:id',authController.isAuthenticated,authController.isAdmin, (req,res)=>{
     const id= req.params.id;
@@ -85,8 +87,38 @@ router.get('/impresion', authController.isAuthenticated, (req, res)=>{
         }
     })
 })   
+router.get('/editImpresion/:id',authController.isAuthenticated, (req,res)=>{
+    const id= req.params.id;
+    conexion.query('SELECT * FROM libros WHERE id=?',[id], (error,results)=>{
+        if(error){
+         throw error;
+    }else{
+        res.render('editImpresion',{libros:results[0]});
+    }
+    })
+})
 
-
+router.get('/corte', authController.isAuthenticated, (req, res)=>{    
+    //res.render('index', {user:req.user});
+    
+    conexion.query('SELECT * FROM libros ORDER BY prioridad',(error,results)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.render('corte',{results:results, user:req.user});
+        }
+    })
+})  
+router.get('/editCorte/:id',authController.isAuthenticated, (req,res)=>{
+    const id= req.params.id;
+    conexion.query('SELECT * FROM libros WHERE id=?',[id], (error,results)=>{
+        if(error){
+         throw error;
+    }else{
+        res.render('editCorte',{libros:results[0]});
+    }
+    })
+})
 router.get('/get-factura-pedido/:id',authController.getFacturaPedido);
 
 

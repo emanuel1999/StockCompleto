@@ -72,9 +72,9 @@
             <div class="mb-3">
                 <label for="estado" class="form-label" >Estado</label>
                 <select name="estado" id="estado" class="form-select" tabindex="2">
-                  <option <%= libros.pliego =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
-                  <option <%= libros.pliego =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
-                  <option <%= libros.pliego =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
+                  <option <%= libros.estado =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
+                  <option <%= libros.estado =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
+                  <option <%= libros.estado =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -181,6 +181,26 @@
             <div class="mb-3">
               <label  class="form-label">Seccion Taco</label>
               </div>
+              <div class="mb-3">
+                <label for="tipoimpresiontaco" class="form-label">Tipo De Impresion Taco </label>
+                <input type="text" name="tipoimpresiontaco" id="tipoimpresiontaco" class="form-control" tabindex="1" value="<%= libros.tipoimpresiontaco %>" >
+              </div> 
+              <div class="mb-3">
+                <label for="estadoimpresion" class="form-label">Estado De Impresion Taco </label>
+                <select name="estadoimpresion" id="estadoimpresion" class="form-select" tabindex="2">
+                  <option <%= libros.estadoimpresion =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
+                  <option <%= libros.estadoimpresion =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
+                  <option <%= libros.estadoimpresion =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="estadocorte" class="form-label">Estado De Corte Del Taco </label>
+                <select name="estadocorte" id="estadocorte" class="form-select" tabindex="2">
+                  <option <%= libros.estadocorte =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
+                  <option <%= libros.estadocorte =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
+                  <option <%= libros.estadocorte =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
+                </select>
+              </div>        
             <div class="mb-3">
               <label for="pliegoop" class="form-label">Taco </label>
               <input type="text" name="pliegoop" id="pliegoop" class="form-control" tabindex="1" value="<%= libros.pliegoop %>" >

@@ -156,12 +156,15 @@ exports.save= (req,res)=>{
     const provedortapa=req.body.provedortapa; 
     const provedorinterior= req.body.provedorinterior;
     const volumentaco=req.body.volumentaco;
+    const tipoimpresiontaco=req.body.tipoimpresiontaco;
+    const estadoimpresion=req.body.estadoimpresion;
+    const estadocorte=req.body.estadocorte;
     conexion.query('INSERT INTO libros SET ?',{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
     pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
     up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
     tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
     acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,editorial:editorial,tacocorte:tacocorte,tamañopdf:tamañopdf,
-    provedortapa:provedortapa,provedorinterior:provedorinterior,volumentaco:volumentaco}, (error, results)=>{
+    provedortapa:provedortapa,provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -206,16 +209,41 @@ exports.update=(req,res)=>{
     const provedortapa=req.body.provedortapa; 
     const provedorinterior= req.body.provedorinterior;
     const volumentaco=req.body.volumentaco;
+    const tipoimpresiontaco=req.body.tipoimpresiontaco;
+    const estadoimpresion=req.body.estadoimpresion;
+    const estadocorte=req.body.estadocorte;
     conexion.query('UPDATE libros SET ? WHERE id= ?',[{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
         pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
         up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
         tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
         acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,editorial:editorial,tacocorte:tacocorte,tamañopdf:tamañopdf,provedortapa:provedortapa,
-        provedorinterior:provedorinterior,volumentaco:volumentaco}, id],(error, results)=>{
+        provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte}, id],(error, results)=>{
             if(error){
                 console.log(error);
             }else {
                 res.redirect('/');
+            }
+        })
+}
+exports.updateEstadoIm=(req,res)=>{
+    const id=req.body.id;
+    const estadoimpresion=req.body.estadoimpresion;
+    conexion.query('UPDATE libros SET ? WHERE id= ?',[{estadoimpresion:estadoimpresion}, id],(error, results)=>{
+            if(error){
+                console.log(error);
+            }else {
+                res.redirect('/impresion');
+            }
+        })
+}
+exports.updateEstadoCo=(req,res)=>{
+    const id=req.body.id;
+    const estadocorte=req.body.estadocorte;
+    conexion.query('UPDATE libros SET ? WHERE id= ?',[{estadocorte:estadocorte}, id],(error, results)=>{
+            if(error){
+                console.log(error);
+            }else {
+                res.redirect('/corte');
             }
         })
 }
