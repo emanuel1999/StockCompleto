@@ -133,10 +133,10 @@ router.get('/tapa', authController.isAuthenticated, (req, res)=>{
     })
 })  
 
-router.get('/dt/:editorial', authController.isAuthenticated,(req,res,next)=>{
+router.get('/dt/:editorial', authController.isAuthenticated, (req,res,next)=>{
     const editorial=req.params.editorial;
 
-    conexion.query('SELECT * FROM libros WHERE editorial =? ORDER BY prioridad;',[editorial],(error,results)=>{
+     conexion.query('SELECT * FROM libros WHERE editorial =? ORDER BY prioridad;',[editorial],(error,results)=>{
         if(error){res.redirect('/')}
         else{
             res.render('index',{results:results,user:req.user})
