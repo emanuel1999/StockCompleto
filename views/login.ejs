@@ -1,58 +1,80 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.87.0">
-    <title>Libros Ricoh</title>
+<!DOCTYPE html>
+<html lang="es">
 
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    
-    <!-- Custom styles for this template -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1, initial-scale=1.0">
+    <title>RICOH PrintCenter | Libros | Iniciar sesion</title>
+    <link rel="stylesheet" href="css/estiloIndex.css">
     <link href="css/signin.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-  </head>
-  <body class="text-center">
-    
-<main class="form-signin text-center shadow-lg p-3 mb-5">
+    <link rel="shortcut icon" href="img/undraw_male_avatar_323b.svg" type="image/x-icon">
+</head>
 
-  <form id="formLogin" action="/login" method="POST">
-    <img class="mb-4" src="img/bootstrap-logo.svg" alt="" width="72" height="57">
-    <div class="form-floating">
-      <input type="text" class="form-control" id="user" name="user" placeholder="User">
-      <label for="user">User</label>
+<body>
+    <header>
+        <div class="contentheader">
+            <img class="imagenh" src="img/data_maintenance_isometric.svg">
+            <dir></dir>
+        </div>
+        <div class="wave">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#f90202" fill-opacity="1"
+                    d="M0,288L48,288C96,288,192,288,288,256C384,224,480,160,576,133.3C672,107,768,117,864,138.7C960,160,1056,192,1152,170.7C1248,149,1344,75,1392,37.3L1440,0L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <div class="formulario">
+      <main class="form-signin text-center shadow-lg p-3 mb-5">
+      <form id="formLogin" action="/login" method="POST">
+        <h1>Iniciar sesión</h1>
+        <img class="mb-4" src="img/undraw_male_avatar_323b.svg" alt="" width="130" height="130">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="user" name="user" placeholder="Usuario">
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+        </div>
+        <button class="btn enviar" type="submit">Login</button>    
+      </form>
+    </main>
+      <br>
+      <%#<a href="/register" type="button" class="w-100 btn btn-lg btn-bd-primary">Registrarse</a> %>
+        </form>
     </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
-      <label for="pass">Password</label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>    
-  </form>
+   
 
-  <br>
-  <%#<a href="/register" type="button" class="w-100 btn btn-lg btn-bd-primary">Registrarse</a> %>
-</main>
+    <footer>
+        <div class="conteninfo">
+            <h1>RICOH Argentina</h1>
+            <p>Página diseñada por Ing. de Planta | Todos los derechos reservados</p>
+            
+        </div>
+    </footer>
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <% if(alert) { %>
-    <script>
-      Swal.fire({
-        title: '<%= alertTitle %>',
-        text:'<%= alertMessage %>',
-        icon:'<%= alertIcon %>',
-        showConfirmButton: <%= showConfirmButton %>,
-        timer: <%= timer %>
-      }).then(()=>{
-        window.location = '/<%= ruta %>'
-      })
-    </script>
-  <% } %>
-  
 
-  </body>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if(alert) { %>
+      <script>
+        Swal.fire({
+          title: '<%= alertTitle %>',
+          text:'<%= alertMessage %>',
+          icon:'<%= alertIcon %>',
+          showConfirmButton: <%= showConfirmButton %>,
+          timer: <%= timer %>
+        }).then(()=>{
+          window.location = '/<%= ruta %>'
+        })
+      </script>
+    <% } %>
+</body>
+
 </html>
+
+
+
+
+
+

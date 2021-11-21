@@ -1,59 +1,59 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <style>
-    body {  
-      /* display: flex; */
-      align-items: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      background-color:rgba(255,255,255,0.95);
-    }
-    </style>
-    <title>Libros Ricoh</title>
-  </head>
-  <body>
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12 shadow-lg p-3 mb-5">
-
-          <div class="card border-primary">
-            <div class="card-header bg-primary text-white">Registrarse</div>
-            <div class="card-body text-primary">
-              <form action="/register" method="POST">        
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nombre completo</label>
-                    <input id="name" name="name" type="text" class="form-control" aria-describedby="emailHelp">              
-                </div>
-                <div class="mb-3">
-                    <label for="user" class="form-label">Cuenta de usuario</label>
-                    <input id="user" name="user" type="text" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="pass" class="form-label">Password</label>
-                    <input id="pass" name="pass" type="password" class="form-control">
-                </div>                            
-            </div>
-            <div class="card-footer bg-transparent border-primary">
-              <a href="/" type="button" class="btn btn-secondary">Cancelar</a>
-              <button type="submit" class="btn btn-primary">Registrar</button>
-            </div>
-            </form>
-          </div>   
-    
-        </div>
+    <title>RICOH PrintCenter | Libros | Registrar</title>
+    <link rel="stylesheet" href="css/estiloRegistro.css">
+    <link rel="shortcut icon" href="img/undraw_male_avatar_323b.svg" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <div class="contentheader">
+        <img class="imagenh" src="img/data_maintenance_isometric.svg">
+        <dir></dir>
     </div>
-</div>
+    <div class="wave">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#f90202" fill-opacity="1"
+                d="M0,288L48,288C96,288,192,288,288,256C384,224,480,160,576,133.3C672,107,768,117,864,138.7C960,160,1056,192,1152,170.7C1248,149,1344,75,1392,37.3L1440,0L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+            </path>
+        </svg>
+    </div>
+</header>
 
- 
-    
-    <script src="js/bootstrap.bundle.min.js"></script>
-  </body>
+    <div class="formulario">
+      <form action="/register" method="POST">
+            <h1>Registrate</h1>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Nombre completo">
+            </div>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="user" name="user" placeholder="Usuario">
+            </div>            <div class="form-floating">
+              <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+            </div>
+
+                           
+      <div>
+        <button type="submit" class="btn enviar">Registrar</button>
+        <button href="/" type="submit" class="btn enviar">Cancelar</button>
+      </div>
+      </form>
+        <img src="img/undraw_sign_in_e6hj.svg">
+    </div>
+
+    <footer>
+      <div class="conteninfo">
+          <h1>RICOH Argentina</h1>
+          <p>Página diseñada por Ing. de Planta | Todos los derechos reservados</p>
+          
+      </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>   
+
+</body>
 </html>

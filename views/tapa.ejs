@@ -68,40 +68,37 @@
   <a href="/corte" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Corte</a>
   <a href="/encuadernado" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Encuadernado</a>
   <a href="/tapa" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Tapa</a>
-  <div><a style="font-size: 24px;text-align: center;">Impresion</a></div>
+  <div><a style="font-size: 24px;text-align: center;">Tapa</a></div>
   <table class="table table-bordered table-striped text-center mt-4 ">
     <thead>
       <tr class="bg-primary text-white">
       <th scope="col">Prioridad</th>
-      <th scope="col">Estado De Impresion</th>
+      <th scope="col">Estado De Tapa</th>
       <th scope="col">Libro</th>
-      <th scope="col">Tipo De Impresion</th>
-      <th scope="col">Tamaño Papel y Gramaje</th>
-      <th scope="col">Tamaño PDF</th>
-      <th scope="col">Taco Corte</th>
+      <th scope="col">Tipo De Papel</th>
+      <th scope="col">Tamaño De Resma</th>
       <th scope="col">Volumen De TACO</th>
+      <th scope="col">Solapa</th>
       </tr>
     </thead>
     <tbody>
       <% results.forEach((libros)=> { %>
         <tr>
        <td><%=libros.prioridad%></td> 
-       <%if(libros.estadoimpresion=='Sin Entregar'){%>
-        <td style="background-color:#FF3636;color:black;"><a href="editImpresion/<%=libros.id%>"><%=libros.estadoimpresion%></a></td> 
+       <%if(libros.estadocorte=='Sin Entregar'){%>
+        <td style="background-color:#FF3636;color:black;"><a href="editCorte/<%=libros.id%>"><%=libros.estadocorte%></a></td> 
        <%}%>
-       <%if(libros.estadoimpresion=='En Proceso'){%>
-        <td style="background-color:#8AF333;color:black;"><a href="editImpresion/<%=libros.id%>"><%=libros.estadoimpresion%></a></td>
+       <%if(libros.estadocorte=='En Proceso'){%>
+        <td style="background-color:#8AF333;color:black;"><a href="editCorte/<%=libros.id%>"><%=libros.estadocorte%></a></td> 
        <%}%>
-       <%if(libros.estadoimpresion=='Entregado'){%>
-        <td style="background-color:#00C9FF;color:black;"><a href="editImpresion/<%=libros.id%>"><%=libros.estadoimpresion%></a></td>
+       <%if(libros.estadocorte=='Entregado'){%>
+        <td style="background-color:#00C9FF;color:black;"><a href="editCorte/<%=libros.id%>"><%=libros.estadocorte%></a></td> 
        <%}%>
-       
-       <td><%=libros.libro%></td>
-       <td><%=libros.tipoimpresiontaco%></td> 
-       <td><%=libros.hojas%></td> 
-       <td><%=libros.tamañopdf%></td>
-       <td><%=libros.tacocorte%></td>
+       <td><%=libros.libro%></td> 
+       <td><%=libros.tipopapel1%></td>
+       <td><%=libros.hoja1%></td>
        <td><%=libros.volumentaco%></td>
+       <td><%=libros.solapa%></td>
        <td>
          <a href="/edit/<%=libros.id%>" class="btn btn-outline-info">Editar</a>
          <a href="/delete/<%=libros.id%>" class="btn btn-outline-danger">Borrar</a>
@@ -124,13 +121,3 @@
   </body>
 </html>
 
-
-
-
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    
-  </body>
-</html>

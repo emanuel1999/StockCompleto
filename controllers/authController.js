@@ -3,6 +3,7 @@ const bcryptjs = require('bcryptjs')
 const conexion = require('../database/db')
 const {promisify} = require('util')
 const PDF =require('pdfkit-construct');
+const exp = require('constants');
 
 
 //procedimiento para registrarnos
@@ -85,7 +86,7 @@ exports.isAuthenticated = async (req, res, next)=>{
     if (req.cookies.jwt) {
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-            conexion.query('SELECT * FROM users WHERE id = ?', [decodificada.id], (error, results)=>{
+            await conexion.query('SELECT * FROM users WHERE id = ?', [decodificada.id], (error, results)=>{
                 if(!results){return next()}
                 req.user = results[0]
                 return next()
@@ -102,7 +103,7 @@ exports.isAdmin= async(req,res,next)=>{
     if(req.cookies.jwt){
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-            conexion.query('SELECT * FROM users WHERE id = ?', [decodificada.id],(error,results)=>{
+            await conexion.query('SELECT * FROM users WHERE id = ?', [decodificada.id],(error,results)=>{
                 role=results[0].rol
                 if(role=="admin"){
                     next()
@@ -120,7 +121,7 @@ exports.isAdmin= async(req,res,next)=>{
 }
 
 
-exports.save= (req,res)=>{
+exports.save= async (req,res)=>{
     const estado=req.body.estado;
     const editorial=req.body.editorial;
     const libro=req.body.libro;
@@ -159,7 +160,7 @@ exports.save= (req,res)=>{
     const tipoimpresiontaco=req.body.tipoimpresiontaco;
     const estadoimpresion=req.body.estadoimpresion;
     const estadocorte=req.body.estadocorte;
-    conexion.query('INSERT INTO libros SET ?',{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
+    await conexion.query('INSERT INTO libros SET ?',{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
     pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
     up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
     tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
@@ -172,7 +173,7 @@ exports.save= (req,res)=>{
         }            
     });
 }
-exports.update=(req,res)=>{
+exports.update= async(req,res)=>{
     const id=req.body.id;
     const estado=req.body.estado;
     const editorial=req.body.editorial;
@@ -212,7 +213,7 @@ exports.update=(req,res)=>{
     const tipoimpresiontaco=req.body.tipoimpresiontaco;
     const estadoimpresion=req.body.estadoimpresion;
     const estadocorte=req.body.estadocorte;
-    conexion.query('UPDATE libros SET ? WHERE id= ?',[{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
+    await conexion.query('UPDATE libros SET ? WHERE id= ?',[{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
         pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
         up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
         tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
@@ -252,14 +253,10 @@ exports.logout = (req, res)=>{
     return res.redirect('/')
 }
 
-const pedido={};
-pedido.findLibro= async (id) =>{
-    return await conexion.query('SELECT * FROM libros WHERE id =?',[id]);
-}
 
 exports.getFacturaPedido= async (req,res)=>{
     const id=req.params.id;
-    conexion.query('SELECT * FROM libros WHERE id= ?', [id],(error,results)=>{
+     conexion.query('SELECT * FROM libros WHERE id= ?', [id],(error,results)=>{
         if(error){
             console.log(error);
         }else{ 

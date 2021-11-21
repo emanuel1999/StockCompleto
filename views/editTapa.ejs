@@ -63,18 +63,18 @@
     <div class="card border-secondary" >
     <div class="card-header">Editar Libro</div>
     <div class="card-body">
-        <form action="/updateImpresion" method="POST">
+        <form action="/updateTapa" method="POST">
             <input hidden type="text" name="id" id="id" value="<%= libros.id %>">
             <div class="mb-3">
-                <label for="estadoimpresion" class="form-label" >Estado De Impresion Taco</label>
-                <select name="estadoimpresion" id="estadoimpresion" class="form-select" tabindex="2">
-                  <option <%= libros.estadoimpresion =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
-                  <option <%= libros.estadoimpresion =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
-                  <option <%= libros.estadoimpresion =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
+                <label for="estadotapa" class="form-label" >Estado De Impresion Tapa</label>
+                <select name="estadotapa" id="estadotapa" class="form-select" tabindex="2">
+                  <option <%= libros.estadotapa =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
+                  <option <%= libros.estadotapa =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
+                  <option <%= libros.estadotapa =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
-            <a href="/impresion" class="btn btn-secondary">Cancelar</a>
+            <a href="/corte" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </div>

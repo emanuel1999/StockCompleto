@@ -182,7 +182,10 @@
               </div>
               <div class="mb-3">
                 <label for="tipoimpresiontaco" class="form-label">Tipo De Impresion Taco </label>
-                <input type="text" name="tipoimpresiontaco" id="tipoimpresiontaco" class="form-control" tabindex="1" >
+                  <select name="tipoimpresiontaco" id="tipoimpresiontaco" class="form-control" tabindex="1">
+                    <option value="Inkjet">Inkjet</option>
+                    <option value="Laser">Laser</option>
+                  </select>
               </div>
               <div class="mb-3">
                 <label for="estadoimpresion" class="form-label">Estado De Impresion Taco </label>
@@ -196,6 +199,14 @@
               <div class="mb-3">
                 <label for="estadocorte" class="form-label">Estado De Corte Del Taco </label>
                 <select name="estadocorte" id="estadocorte" class="form-select" tabindex="2">
+                  <option value="Sin Entregar">Sin Entregar</option>
+                  <option value="En Proceso">En Proceso</option>
+                  <option value="Entregado">Entregado</option>
+                </select>
+              </div> 
+              <div class="mb-3">
+                <label for="estadotapa" class="form-label">Estado De Tapa</label>
+                <select name="estadotapa" id="estadotapa" class="form-select" tabindex="2">
                   <option value="Sin Entregar">Sin Entregar</option>
                   <option value="En Proceso">En Proceso</option>
                   <option value="Entregado">Entregado</option>

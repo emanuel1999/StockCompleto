@@ -29,6 +29,13 @@ services:
       container_name: nodejs
       image: emanuel/erivero
       restart: always
+      volumes:
+        - ./public:/app/public
+        - ./routes:/app/routes
+        - ./env:/app/env
+        - ./database:/app/database
+        - ./controllers:/app/controllers
+        - ./views:/app/views
       ports:
         - "3000:3000"
       depends_on:

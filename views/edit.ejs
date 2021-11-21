@@ -179,12 +179,16 @@
               <input type="date" name="despachofinal" id="despachofinal" class="form-control" tabindex="1"  value="<%= libros.despachofinal %>">
             </div>  
             <div class="mb-3">
-              <label  class="form-label">Seccion Taco</label>
+              <label  class="form-label"><h2><b>Seccion Taco</b></h2></label>
               </div>
               <div class="mb-3">
                 <label for="tipoimpresiontaco" class="form-label">Tipo De Impresion Taco </label>
-                <input type="text" name="tipoimpresiontaco" id="tipoimpresiontaco" class="form-control" tabindex="1" value="<%= libros.tipoimpresiontaco %>" >
+                <select name="tipoimpresiontaco" id="tipoimpresiontaco" class="form-control" tabindex="1">
+                  <option <%= libros.tipoimpresiontaco =='Inkjet' ? "selected" : '' %> value="Inkjet">Inkjet</option>
+                  <option <%= libros.tipoimpresiontaco =='Laser' ? "selected" : '' %> value="Laser">Laser</option>
+                </select>
               </div> 
+
               <div class="mb-3">
                 <label for="estadoimpresion" class="form-label">Estado De Impresion Taco </label>
                 <select name="estadoimpresion" id="estadoimpresion" class="form-select" tabindex="2">
@@ -199,6 +203,14 @@
                   <option <%= libros.estadocorte =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
                   <option <%= libros.estadocorte =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
                   <option <%= libros.estadocorte =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
+                </select>
+              </div>  
+              <div class="mb-3">
+                <label for="estadotapa" class="form-label">Estado De Tapa </label>
+                <select name="estadotapa" id="estadotapa" class="form-select" tabindex="2">
+                  <option <%= libros.estadotapa =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
+                  <option <%= libros.estadotapa =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
+                  <option <%= libros.estadotapa =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
                 </select>
               </div>        
             <div class="mb-3">
