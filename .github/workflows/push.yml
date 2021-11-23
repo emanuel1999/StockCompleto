@@ -13,5 +13,5 @@ jobs:
         username: ${{ secrets.PLANTA_USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSHKEY }}
-        source: "/*"
+        source: "routes/*"
         target: "/home/erivero/Escritorio/creandogit/"
