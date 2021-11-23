@@ -12,6 +12,5 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.PLANTA_USERNAME }}
         password: ${{ secrets.PLANTA_PASSWORD }}
-        port: ${{ secrets.PORT }}
         source: "routes/*"
-        target: "home"
+        target: "~/Escritorio/creandogit"
