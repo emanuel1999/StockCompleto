@@ -14,4 +14,4 @@ jobs:
         password: ${{ secrets.PLANTA_PASSWORD }}
         port: ${{ secrets.PORT }}
         source: "routes/*"
-        target: "/home/erivero/Escritorio/creandogit/"
+        target: "/home/erivero/Escritorio/creandogit"
