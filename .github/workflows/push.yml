@@ -13,4 +13,4 @@ jobs:
         username: ${{ secrets.PLANTA_USERNAME }}
         password: ${{ secrets.PLANTA_PASSWORD }}
         source: "routes/*"
-        target: "~/Escritorio/creandogit"
+        target: "test"
