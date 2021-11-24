@@ -9,8 +9,8 @@ jobs:
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
-        host: 192.168.1.33
+        host: ${{ secrets.HOST }}
         username: ${{ secrets.PLANTA_USERNAME }}
         password: ${{ secrets.PLANTA_PASSWORD }}
-        source: "routes/*"
+        source: "routes/router.js"
         target: "test"
