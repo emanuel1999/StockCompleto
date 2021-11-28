@@ -13,5 +13,5 @@ jobs:
         username: ${{ secrets.PLANTA_USERNAME }}
         password: ${{ secrets.PLANTA_PASSWORD }}
         port: ${{ secrets.PORT }}
-        source: "routes/router.js"
-        target: "test"
+        source: "*"
+        target: "/home/erivero/Escritorio/prueba"
