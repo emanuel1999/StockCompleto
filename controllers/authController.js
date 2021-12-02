@@ -160,12 +160,13 @@ exports.save= async (req,res)=>{
     const tipoimpresiontaco=req.body.tipoimpresiontaco;
     const estadoimpresion=req.body.estadoimpresion;
     const estadocorte=req.body.estadocorte;
+    const estadotapa=req.body.estadotapa;
     await conexion.query('INSERT INTO libros SET ?',{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
     pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
     up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
     tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
     acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,editorial:editorial,tacocorte:tacocorte,tamañopdf:tamañopdf,
-    provedortapa:provedortapa,provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte}, (error, results)=>{
+    provedortapa:provedortapa,provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte,estadotapa:estadotapa}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -213,12 +214,13 @@ exports.update= async(req,res)=>{
     const tipoimpresiontaco=req.body.tipoimpresiontaco;
     const estadoimpresion=req.body.estadoimpresion;
     const estadocorte=req.body.estadocorte;
+    const estadotapa=req.body.estadotapa;
     await conexion.query('UPDATE libros SET ? WHERE id= ?',[{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
         pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
         up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
         tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
         acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,editorial:editorial,tacocorte:tacocorte,tamañopdf:tamañopdf,provedortapa:provedortapa,
-        provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte}, id],(error, results)=>{
+        provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte,estadotapa:estadotapa}, id],(error, results)=>{
             if(error){
                 console.log(error);
             }else {
@@ -245,6 +247,39 @@ exports.updateEstadoCo=(req,res)=>{
                 console.log(error);
             }else {
                 res.redirect('/corte');
+            }
+        })
+}
+exports.saveRep=async(req,res)=>{
+    const fecha=req.body.fecha;
+    const turno=req.body.turno;
+    const libro=req.body.libro;
+    const trilateral=req.body.trilateral;
+    const laminado=req.body.laminado;
+    const guillotinado=req.body.guillotinado;
+    const encuadernado=req.body.encuadernado;
+    const observaciones=req.body.observaciones;
+    await conexion.query('INSERT INTO reportes SET ?',{fecha:fecha,turno:turno,libro:libro,trilateral:trilateral,
+    laminado:laminado,guillotinado:guillotinado,encuadernado:encuadernado,observaciones:observaciones}, (error,results)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.redirect('/reportes');
+        }  
+
+    })
+
+}
+
+
+exports.updateEstadoTa=(req,res)=>{
+    const id=req.body.id;
+    const estadotapa=req.body.estadotapa;
+    conexion.query('UPDATE libros SET ? WHERE id= ?',[{estadotapa:estadotapa}, id],(error, results)=>{
+            if(error){
+                console.log(error);
+            }else {
+                res.redirect('/tapa');
             }
         })
 }

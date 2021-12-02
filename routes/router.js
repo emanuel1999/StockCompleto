@@ -40,9 +40,11 @@ router.get('/create',authController.isAuthenticated,authController.isAdmin, (req
     res.render('create');
 })
 router.post('/save',authController.isAuthenticated,authController.isAdmin,authController.save);
+router.post('/saveRep',authController.isAuthenticated,authController.isAdmin,authController.saveRep);
 router.post('/update',authController.isAuthenticated,authController.isAdmin,authController.update);
 router.post('/updateImpresion',authController.isAuthenticated,authController.updateEstadoIm);
 router.post('/updateCorte',authController.isAuthenticated,authController.updateEstadoCo);
+router.post('/updateTapa',authController.isAuthenticated,authController.updateEstadoTa);
 //editar
 router.get('/edit/:id',authController.isAuthenticated,authController.isAdmin, async (req,res)=>{
     const id= req.params.id;
@@ -132,7 +134,16 @@ router.get('/tapa', authController.isAuthenticated, (req, res)=>{
         }
     })
 })  
-
+router.get('/editTapa/:id',authController.isAuthenticated, (req,res)=>{
+    const id= req.params.id;
+    conexion.query('SELECT * FROM libros WHERE id=?',[id], (error,results)=>{
+        if(error){
+         throw error;
+    }else{
+        res.render('editTapa',{libros:results[0]});
+    }
+    })
+})
 router.get('/dt/:editorial', authController.isAuthenticated, (req,res,next)=>{
     const editorial=req.params.editorial;
 
@@ -145,5 +156,27 @@ router.get('/dt/:editorial', authController.isAuthenticated, (req,res,next)=>{
     })
 })
 
+router.get('/reportes',authController.isAuthenticated,(req,res)=>{
+
+     conexion.query('SELECT * FROM reportes ORDER BY fecha',(error,results)=>{
+
+        if(error){res.redirect('/')}
+        else{
+            res.render('reportes',{results:results, user:req.user});
+        }
+    })
+
+})
+router.get('/createReportes',authController.isAuthenticated,authController.isAdmin, (req,res)=>{
+
+     conexion.query('SELECT pliegoop FROM libros ',(error,results)=>{
+
+        if(error){res.redirect('/')}
+        else{
+            res.render('createReportes',{results:results, user:req.user});
+        }
+    })
+
+})
 
 module.exports = router

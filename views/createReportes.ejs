@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.87.0">
+    <title>Libros Ricoh</title>
+    <!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#" style="background-color: brown;">RICOH ARGENTINA</a> 
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a type="button" class="px-3 btn btn-danger" href="logout">Logout</a>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    
+    <!-- Contenido principal   -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Intranet Libros-RICOH</h2>
+        
+      </div> 
+    </main>
+  </div>
+</div>
+
+<div class="container mt-4">
+    <div class="card border-secondary">
+    <div class="card-header">Cargar Nuevo Libro</div>
+    <div class="card-body">
+        <form action="/saveRep" method="POST">
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" name="fecha" id="fecha" class="form-control" tabindex="1" required>
+            </div>
+            <div class="mb-3">
+                <label for="turno" class="form-label">Turno</label>
+                <select name="turno" id="turno" class="form-select" tabindex="2">
+                  <option value="Mañana">Mañana</option>
+                  <option value="Tarde">Tarde</option>
+                  <option value="Noche">Noche</option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+              <label for="libro" class="form-label">Libros</label>
+              <select name="libro" id="libro" class="form-select" tabindex="2" required>
+              <% results.forEach((libros)=> { var libro2= libros.libro;%>
+              <% for(var i =0; i<1; i++){%>
+                 <option value=<%=libros.pliegoop%> > <%=libros.pliegoop%> </option> 
+                 <% } %>
+                 <% }) %>
+              </select>
+              
+          </div>
+            
+            <div class="mb-3">
+              <label for="trilateral" class="form-label">Trilateral</label>
+              <input type="number" name="trilateral" id="trilateral" class="form-control" tabindex="1" required>
+          </div>
+            <div class="mb-3">
+                <label for="laminado" class="form-label">Laminado</label>
+                <input type="number" name="laminado" id="laminado" class="form-control" tabindex="1" required>
+            </div>
+            <div class="mb-3">
+                <label for="guillotinado" class="form-label">Guillotinado</label>
+                <input type="text" name="guillotinado" id="guillotinado" class="form-control" tabindex="1" required >
+            </div>
+            <div class="mb-3">
+                <label for="encuadernado" class="form-label">Encuadernado</label>
+                <input type="number" name="encuadernado" id="encuadernado" class="form-control" tabindex="1" required >
+            </div>
+            
+            <div class="mb-3">
+                <label for="observaciones" class="form-label">Observaciones</label>
+                <input type="text" name="observaciones" id="observaciones" class="form-control" tabindex="1" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+            <a href="/" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+</div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+  </body>
+</html>
