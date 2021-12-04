@@ -70,18 +70,15 @@
   <a href="/tapa" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Tapa</a>
   <a href="/reportes" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Reportes</a>
   <a href="/createReportes" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Create Reporte</a>
-  
-  <div><a style="font-size: 24px;text-align: center;">Corte</a></div>
-  
+  <div><a style="font-size: 24px;text-align: center;">Encuadernado</a></div>
   <table class="table table-bordered table-striped text-center mt-4 ">
     <thead>
       <tr class="bg-primary text-white">
       <th scope="col">Prioridad</th>
-      <th scope="col">Estado De Corte</th>
+      <th scope="col">Estado Encuadernado</th>
       <th scope="col">Libro</th>
-      <th scope="col">Tamaño PDF</th>
-      <th scope="col">Taco Corte</th>
-      <th scope="col">Volumen De TACO</th>
+      <th scope="col">Tamaño Cerrado</th>
+      <th scope="col">Acabado Gral</th>
       <th scope="col">Solapa</th>
       </tr>
     </thead>
@@ -89,19 +86,18 @@
       <% results.forEach((libros)=> { %>
         <tr>
        <td><%=libros.prioridad%></td> 
-       <%if(libros.estadocorte=='Sin Entregar'){%>
-        <td style="background-color:#FF3636;color:black;"><a href="editCorte/<%=libros.id%>"><%=libros.estadocorte%></a></td> 
+       <%if(libros.estadoencuadernado=='Sin Entregar'){%>
+        <td style="background-color:#FF3636;color:black;"><a href="editEncuadernado/<%=libros.id%>"><%=libros.estadoencuadernado%></a></td> 
        <%}%>
-       <%if(libros.estadocorte=='En Proceso'){%>
-        <td style="background-color:#8AF333;color:black;"><a href="editCorte/<%=libros.id%>"><%=libros.estadocorte%></a></td> 
+       <%if(libros.estadoencuadernado=='En Proceso'){%>
+        <td style="background-color:#8AF333;color:black;"><a href="editEncuadernado/<%=libros.id%>"><%=libros.estadoencuadernado%></a></td> 
        <%}%>
-       <%if(libros.estadocorte=='Entregado'){%>
-        <td style="background-color:#00C9FF;color:black;"><a href="editCorte/<%=libros.id%>"><%=libros.estadocorte%></a></td> 
+       <%if(libros.estadoencuadernado=='Entregado'){%>
+        <td style="background-color:#00C9FF;color:black;"><a href="editEncuadernado"><%=libros.estadoencuadernado%></a></td> 
        <%}%>
        <td><%=libros.libro%></td> 
-       <td><%=libros.tamañopdf%></td>
-       <td><%=libros.tacocorte%></td>
-       <td><%=libros.volumentaco%></td>
+       <td><%=libros.cerrado%></td>
+       <td><%=libros.acabadolibro%></td>
        <td><%=libros.solapa%></td>
        <td>
          <a href="/edit/<%=libros.id%>" class="btn btn-outline-info">Editar</a>

@@ -45,6 +45,7 @@ router.post('/update',authController.isAuthenticated,authController.isAdmin,auth
 router.post('/updateImpresion',authController.isAuthenticated,authController.updateEstadoIm);
 router.post('/updateCorte',authController.isAuthenticated,authController.updateEstadoCo);
 router.post('/updateTapa',authController.isAuthenticated,authController.updateEstadoTa);
+router.post('/updateEncuadernado',authController.isAuthenticated,authController.updateEncuadernado);
 //editar
 router.get('/edit/:id',authController.isAuthenticated,authController.isAdmin, async (req,res)=>{
     const id= req.params.id;
@@ -175,6 +176,30 @@ router.get('/createReportes',authController.isAuthenticated,authController.isAdm
         else{
             res.render('createReportes',{results:results, user:req.user});
         }
+    })
+
+})
+
+router.get('/encuadernado',authController.isAuthenticated, (req,res)=>{
+
+    conexion.query('SELECT * FROM libros ORDER BY prioridad',(error,results)=>{
+        if(error){
+            console.log(error);
+        }else{
+            
+            res.render('encuadernado',{results:results, user:req.user});
+        }
+    })
+})
+
+router.get('/editEncuadernado/:id',authController.isAuthenticated, (req,res)=>{
+    const id= req.params.id;
+    conexion.query('SELECT * FROM libros WHERE id=?',[id], (error,results)=>{
+        if(error){
+         throw error;
+    }else{
+        res.render('editEncuadernado',{libros:results[0]});
+    }
     })
 
 })

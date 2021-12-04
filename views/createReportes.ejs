@@ -79,6 +79,7 @@
             <div class="mb-3">
               <label for="libro" class="form-label">Libros</label>
               <select name="libro" id="libro" class="form-select" tabindex="2" required>
+                <option value="">Selecione un libro</option>
               <% results.forEach((libros)=> { var libro2= libros.libro;%>
               <% for(var i =0; i<1; i++){%>
                  <option value=<%=libros.pliegoop%> > <%=libros.pliegoop%> </option> 
@@ -87,7 +88,31 @@
               </select>
               
           </div>
-            
+
+          <div class="mb-3">
+            <label for="libro1" class="form-label">Libros</label>
+            <select name="libro1" id="libro1" class="form-select" tabindex="2" >
+              <option value="">Selecione un libro</option>
+            <% results.forEach((libros)=> { var libro2= libros.libro;%>
+            <% for(var i =0; i<1; i++){%>
+               <option value=<%=libros.pliegoop%> > <%=libros.pliegoop%> </option> 
+               <% } %>
+               <% }) %>
+            </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="libro2" class="form-label">Libros</label>
+          <select name="libro2" id="libro2" class="form-select" tabindex="2" >
+            <option value="">Selecione un libro</option>
+          <% results.forEach((libros)=> { var libro2= libros.libro;%>
+          <% for(var i =0; i<1; i++){%>
+             <option value=<%=libros.pliegoop%> > <%=libros.pliegoop%> </option> 
+             <% } %>
+             <% }) %>
+          </select>      
+        </div>
+
             <div class="mb-3">
               <label for="trilateral" class="form-label">Trilateral</label>
               <input type="number" name="trilateral" id="trilateral" class="form-control" tabindex="1" required>

@@ -68,7 +68,11 @@
   <a href="/corte" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Corte</a>
   <a href="/encuadernado" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Encuadernado</a>
   <a href="/tapa" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Tapa</a>
-  <div><a style="font-size: 24px;text-align: center;">Corte</a></div>
+  <a href="/reportes" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Reportes</a>
+  <a href="/createReportes" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Create Reporte</a>
+  
+  <div><a style="font-size: 24px;text-align: center;">Reportes</a></div>
+  <div class="col-lg-12">
   <table class="table table-bordered table-striped text-center mt-4 ">
     <thead>
       <tr class="bg-primary text-white">
@@ -88,21 +92,19 @@
         <tr>
       <td><%=reportes.fecha%></td>
        <td><%=reportes.turno%></td>
-       <td><%=reportes.libro%></td> 
+       <td><%=reportes.libro%> <%=reportes.libro1%> <%=reportes.libro2%></td> 
        <td><%=reportes.trilateral%></td>
        <td><%=reportes.laminado%></td>
        <td><%=reportes.guillotinado%></td>
        <td><%=reportes.encuadernado%></td>
        <td><%=reportes.observaciones%></td>
-       <td>
-         <a href="/edit/<%=reportes.id%>" class="btn btn-outline-info">Editar</a>
-         <a href="/delete/<%=reportes.id%>" class="btn btn-outline-danger">Borrar</a>
-       </td>
+       
       </tr>
       <% }) %>
       
     </tbody>
   </table>
+</div>
 </div>
 
 
