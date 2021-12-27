@@ -4,6 +4,7 @@ const conexion = require('../database/db')
 const {promisify} = require('util')
 const PDF =require('pdfkit-construct');
 const exp = require('constants');
+const { format } = require('path');
 
 
 //procedimiento para registrarnos
@@ -296,10 +297,99 @@ exports.updateEncuadernado=(req,res)=>{
             if(error){
                 console.log(error);
             }else {
-                res.redirect('/tapa');
+                res.redirect('/encuadernado');
             }
         })
 }
+exports.savePapeles=(req,res)=>{
+    const papel=req.body.papel;
+    const cantidad=req.body.cantidad;
+    const datosextra=req.body.datosextra;
+    const formato=req.body.formato;
+    const provedor=req.body.provedor;
+    conexion.query('INSERT INTO papeles SET ? ',{papel:papel,cantidad:cantidad,datosextra:datosextra,formato:formato,provedor:provedor},(error,results)=>{
+        if(error){
+            console.log(error)
+        }else{
+            res.redirect('papeles')
+        }
+    })
+
+}
+
+exports.updateConsumo=(req,res)=>{
+    const id=req.body.id;
+    const papel=req.body.papel;
+    const cantidad=req.body.cantidad;
+    const datosextra=req.body.datosextra;
+    const formato=req.body.formato;
+    const gastada=req.body.gastada;
+    
+    const valor= cantidad-gastada;
+    conexion.query('UPDATE papeles SET ? WHERE id= ?',[{papel:papel,datosextra:datosextra,formato:formato,cantidad:valor}, id],(error, results)=>{
+        if(error){
+            console.log(error);
+        }else {
+            
+            res.redirect('/papeles');
+        }
+    })
+
+    //antes de hacer el update tendria que hacer un cantidad que tengo menos las ingresadas.
+    //cantidad=cantidadingresada-cantidadBD
+
+}
+
+exports.saveConsumoSup=(req,res)=>{
+    const papel=req.body.papel;
+    const provedor=req.body.provedor;
+    const cliente=req.body.cliente;
+    const datosextra=req.body.datosextra;
+    const gastada=req.body.gastada;
+    const formato=req.body.formato;
+    const fecha=req.body.fecha;
+    const turno=req.body.turno;
+    conexion.query('UPDATE papeles SET cantidad=(cantidad- ?) WHERE papel =? and provedor=? and datosextra=? and formato=?',
+    [gastada,papel,provedor,datosextra,formato],(error,results)=>{
+        if(error){
+             console.log(error);
+             console.log('Datos Invalidos para hacer el Update')
+     }else{
+         
+           conexion.query('INSERT INTO consumoPapel SET ? ',{papel:papel,cliente:cliente,datosextra:datosextra
+        ,formato:formato,provedor:provedor,gastada:gastada,fecha:fecha,turno:turno},(error,results)=>{
+        if(error){
+            console.log(error)
+        }else{
+            res.redirect('papeles');
+
+        }
+    })
+    }
+})
+}
+
+exports.updatePapl=(req,res)=>{
+    
+   
+    const papel=req.body.papel;
+    conexion.query('SELECT * FROM papeles WHERE papel=? ',[papel],(error,results)=>{
+
+       if(error){res.redirect('/')}
+       else{
+        req.results=results
+       }
+   })
+
+}
+/*
+exports.saveReportePapel=(req,res)=>{
+    const papel=req.body.papel;
+    const fechaU=req.body.fechau;
+    const cantidad=req.body.cantidad;
+
+    
+}*/
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')   
     return res.redirect('/')
@@ -492,6 +582,4 @@ doc.fontSize(20).addTable([
     doc.end();
 }  
 })
-    
-
 }

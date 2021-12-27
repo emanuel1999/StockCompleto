@@ -66,11 +66,20 @@
 </div>
 <div class="container">
   <a href="/create" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Create</a>
+  <a href="/createReportes" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Create Reporte</a>
+  <a href="/createPapel" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Create Papel</a>
+  <a href="/createConsumoSup" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Create Consumo</a>
   <a href="/" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Inicio</a>
   <a href="/impresion" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Impresion</a>
   <a href="/corte" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Corte</a>
   <a href="/encuadernado" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Encuadernado</a>
   <a href="/tapa" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Tapa</a>
+  <a href="/reportes" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Area De Reportes</a>
+  <a href="/createReportes" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Create Reporte</a>
+  <a href="/todos" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Entregados</a>
+  <a href="/papeles" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Stock Papeles</a>
+  <a href="/reportePapeles" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Reportes Papeles</a>
+
   <div><a style="font-size: 24px;text-align: center;">Impresion</a></div>
   <table class="table table-bordered table-striped text-center mt-4 " id="example"> 
     <thead>
@@ -87,7 +96,7 @@
       </tr>
     </thead>
     <tbody>
-      <% results.forEach((libros)=> { %>
+      <% results.forEach((libros)=> { if (libros.estadoimpresion=='Entregado') {}else{ %>
         <tr>
        <td><%=libros.prioridad%></td> 
        <%if(libros.estadoimpresion=='Sin Entregar'){%>
@@ -111,7 +120,7 @@
          <a href="/delete/<%=libros.id%>" class="btn btn-outline-danger">Borrar</a>
        </td>
       </tr>
-      <% }) %>
+      <% }}) %>
     </tbody>
   </table>
 </div>
