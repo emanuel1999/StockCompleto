@@ -5,7 +5,10 @@ const {promisify} = require('util')
 const PDF =require('pdfkit-construct');
 const exp = require('constants');
 const { format } = require('path');
+const sgMail= require('@sendgrid/mail');
 
+const api='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';
+sgMail.setApiKey(api);
 
 //procedimiento para registrarnos
 exports.register = async (req, res)=>{    
@@ -176,6 +179,26 @@ exports.save= async (req,res)=>{
             res.redirect('/');
         }            
     });
+}
+exports.sendMail= (req,res, next)=>{
+    const editorial=req.body.editorial;
+    const libro=req.body.libro;
+    const mail1='emanuel_rivero1616@hotmail.com'
+    const message ={
+        to:'emanuel.rivero@ricoh-la.com',
+        from : 'emanuel_rivero1616@hotmail.com',
+        subject:"Libro Cargado:  "+ libro,
+        html:"Buen dia,ya se encuentra cargado en la intranet"+'<h2>El libro:</h2> <h1>'+libro +"</h1>"+ "<h2>De la editorial: </h2><h1>" + editorial+" </h1>",
+        
+    }
+    
+    sgMail.send(message)
+    .then(response=>  next())
+    .catch(error=>console.log(error))
+    
+   
+
+
 }
 exports.update= async(req,res)=>{
     const id=req.body.id;
