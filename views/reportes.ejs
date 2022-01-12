@@ -80,47 +80,45 @@
   <a href="/papeles" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Stock Papeles</a>
   <a href="/reportePapeles" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Reportes Papeles</a>
 
-  <div><a style="font-size: 24px;text-align: center;">Tapa</a></div>
+  <div><a style="font-size: 24px;text-align: center;">Reportes</a></div>
+  <div class="col-lg-12">
   <table class="table table-bordered table-striped text-center mt-4 " id="example">
     <thead>
       <tr class="bg-primary text-white">
-      <th scope="col">Prioridad</th>
-      <th scope="col">Estado De Tapa</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Turno</th>
       <th scope="col">Libro</th>
-      <th scope="col">Tipo De Papel</th>
-      <th scope="col">Tamaño De Resma</th>
-      <th scope="col">Volumen De TACO</th>
-      <th scope="col">Solapa</th>
-      <th scope="col">Accion</th>
+      <th scope="col">Trilateral</th>
+      <th scope="col">Laminado</th>
+      <th scope="col">Guillotinado</th>
+      <th scope="col">Encuadernado</th>
+      <th scope="col">Observaciones</th>
       </tr>
     </thead>
     <tbody>
-      <% results.forEach((libros)=> { if (libros.estadotapa=='Entregado') {}else{%>
+      
+        <% results.forEach((reportes)=> { %>
         <tr>
-       <td><%=libros.prioridad%></td> 
-       <%if(libros.estadotapa=='Sin Entregar'){%>
-        <td style="background-color:#FF3636;color:black;"><a href="editTapa/<%=libros.id%>"><%=libros.estadotapa%></a></td> 
-       <%}%>
-       <%if(libros.estadotapa=='En Proceso'){%>
-        <td style="background-color:#8AF333;color:black;"><a href="editTapa/<%=libros.id%>"><%=libros.estadotapa%></a></td> 
-       <%}%>
-       <%if(libros.estadotapa=='Entregado'){%>
-        <td style="background-color:#00C9FF;color:black;"><a href="editTapa/<%=libros.id%>"><%=libros.estadotapa%></a></td> 
-       <%}%>
-       <td><%=libros.libro%></td> 
-       <td><%=libros.tipopapel1%></td>
-       <td><%=libros.hoja1%></td>
-       <td><%=libros.volumentaco%></td>
-       <td><%=libros.solapa%></td>
-       <td>
-         <a href="/edit/<%=libros.id%>" class="btn btn-outline-info">Editar</a>
-         <a href="/delete/<%=libros.id%>" class="btn btn-outline-danger">Borrar</a>
-       </td>
+      <td><%=reportes.fecha%></td>
+       <td><%=reportes.turno%></td>
+       <td><%=reportes.libro%> <%=reportes.libro1%> <%=reportes.libro2%></td> 
+       <td><%=reportes.trilateral%></td>
+       <td><%=reportes.laminado%></td>
+       <td><%=reportes.guillotinado%></td>
+       <td><%=reportes.encuadernado%></td>
+       <td><%=reportes.observaciones%></td>
+       
       </tr>
-      <% }}) %>
+      <% }) %>
+      
     </tbody>
   </table>
 </div>
+</div>
+
+
+
+
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>

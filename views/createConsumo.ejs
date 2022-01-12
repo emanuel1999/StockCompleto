@@ -58,23 +58,37 @@
     </main>
   </div>
 </div>
-<% if (libros){ %>
+
 <div class="container mt-4" >
     <div class="card border-secondary" >
     <div class="card-header">Editar Libro</div>
     <div class="card-body">
-        <form action="/updateTapa" method="POST">
+      <% if (libros){ %>
+        <form action="/updateConsumo" method="POST">
+            
+          <div class="mb-3">
             <input hidden type="text" name="id" id="id" value="<%= libros.id %>">
+
+            <label for="papel" class="form-label">Gra-Anch-Alto-KG</label>
+            <input name="papel" id="papel" class="form-control" tabindex="1" value="<%= libros.papel %>">              </div>
+          
+              <div class="mb-3">
+                
+                <label for="datosextra" class="form-label">Gra-Anch-Alto-KG</label>
+                <input name="datosextra" id="datosextra" class="form-control" tabindex="1" value="<%= libros.datosextra %>">              </div>
+              <div class="mb-3">
+                <label for="formato" class="form-label">Formato</label>
+                <input name="formato" id="formato" class="form-control" tabindex="1" value="<%= libros.formato %>">              </div>
             <div class="mb-3">
-                <label for="estadotapa" class="form-label" >Estado De Impresion Tapa</label>
-                <select name="estadotapa" id="estadotapa" class="form-select" tabindex="2">
-                  <option <%= libros.estadotapa =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
-                  <option <%= libros.estadotapa =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
-                  <option <%= libros.estadotapa =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
-                </select>
-            </div>
+                <label for="cantidad" class="form-label">Cantidad En Stock</label>
+                <input type="number"name="cantidad" id="cantidad" class="form-control" tabindex="1" value="<%= libros.cantidad %>">                </div>
+                <div class="mb-3">
+                  <label for="gastada" class="form-label">Cantidad Gastadas</label>
+                  <input type="number" name="gastada" id="gastada" class="form-control" tabindex="1" required>
+                </div>
+
             <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
-            <a href="/tapa" class="btn btn-secondary">Cancelar</a>
+            <a href="/papeles" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </div>

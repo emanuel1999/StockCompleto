@@ -6,11 +6,9 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.87.0">
-    <link href="/css/styles.css" rel="stylesheet" type="text/css">
-
     <title>Libros Ricoh</title>
     <!-- Bootstrap core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -30,7 +28,7 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet" type="text/css">
+    <link href="css/dashboard.css" rel="stylesheet">
   </head>
   <body>
     
@@ -46,6 +44,7 @@
     </div>
   </div>
 </header>
+
 <div class="container-fluid">
   <div class="row">
     
@@ -58,31 +57,54 @@
     </main>
   </div>
 </div>
-<% if (libros){ %>
-<div class="container mt-4" >
-    <div class="card border-secondary" >
-    <div class="card-header">Editar Libro</div>
+
+<div class="container mt-4">
+    <div class="card border-secondary">
+    <div class="card-header">Cargar Nuevo Papel</div>
     <div class="card-body">
-        <form action="/updateTapa" method="POST">
-            <input hidden type="text" name="id" id="id" value="<%= libros.id %>">
+        <form action="/savePapeles" method="POST">
+            
             <div class="mb-3">
-                <label for="estadotapa" class="form-label" >Estado De Impresion Tapa</label>
-                <select name="estadotapa" id="estadotapa" class="form-select" tabindex="2">
-                  <option <%= libros.estadotapa =='Sin Entregar' ? "selected" : '' %> value="Sin Entregar">Sin Entregar</option>
-                  <option <%= libros.estadotapa =='En Proceso' ? "selected" : '' %> value="En Proceso">En Proceso</option>
-                  <option <%= libros.estadotapa =='Entregado' ? "selected" : '' %> value="Entregado">Entregado</option>
-                </select>
+                <label for="papel" class="form-label">PAPEL</label>
+                <input type="text" name="papel" id="papel" class="form-control" tabindex="1" required placeholder="Cartulina triplex">
+            </div>
+            <div class="mb-3">
+              <label for="datosextra" class="form-label">Gra-Anch-Alto-KG</label>
+              <input type="text" name="datosextra" id="datosextra" class="form-control" tabindex="1" required placeholder="Tipo-papel-gramaje-ancho-alto">
+          </div>
+          <div class="mb-3">
+            <label for="provedor" class="form-label">Proveedor</label>
+            <select name="provedor" id="provedor" class="form-select" tabindex="2" required>
+              <option value="">Selecione un proveedor</option>
+              <option value="Celulosa_Argentina">Celulosa_Argentina</option>
+              <option value="Stenfar/Susano">Stenfar/Susano</option>
+              <option value="Dimagraf">Dimagraf</option>
+              <option value="Valendam">Valendam</option>
+              <option value="RICOH">RICOH</option>
+              <option value="OSA">OSA</option>
+            </select> 
+            </div>
+          <div class="mb-3">
+          <label for="formato" class="form-label">Formato</label>
+          <select name="formato" id="formato" class="form-select" tabindex="2" required>
+            <option value="">Selecione un formato</option>
+            <option value="BOBINA">BOBINA</option>
+            <option value="HOJA">HOJA</option>
+          </select> 
+        </div>
+            <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad En STOCK</label>
+                <input type="number" name="cantidad" id="cantidad" class="form-control" tabindex="1" required >
             </div>
             <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
-            <a href="/tapa" class="btn btn-secondary">Cancelar</a>
+            <a href="/papeles" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </div>
 </div>
-<%}%>
 
-   
+
+    <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>  
   </body>
 </html>

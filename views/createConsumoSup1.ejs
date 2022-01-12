@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.87.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+
+    <title>Libros Ricoh</title>
+    <!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#" style="background-color: brown;">RICOH ARGENTINA</a> 
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a type="button" class="px-3 btn btn-danger" href="logout">Logout</a>
+    </div>
+  </div>
+</header>
+<div class="container-fluid">
+  <div class="row">
+    
+    <!-- Contenido principal   -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Intranet Libros-RICOH</h2>
+        
+      </div> 
+    </main>
+  </div>
+</div>
+
+<div class="container mt-4" >
+    <div class="card border-secondary" >
+    <div class="card-header">Editar Libro</div>
+    <div class="card-body">
+     
+       
+        <form action="/saveConsumoSup" method="POST">
+          <% if (libros) { %>
+            <div class="mb-3">
+                <label for="papel" class="form-label">Papel</label>
+                <select name="papel" id="papel" class="form-select" tabindex="2" required>
+                  <option value="">Selecione un papel</option>
+                <% libros.forEach((hola)=> { %>
+                <% for(var i =0; i<1; i++){%>
+                   <option value=<%=hola.papel%> > <%=hola.papel%> </option>  
+                   <% } %>
+                   <% }) %>
+                </select>    
+            </div>
+            <div class="mb-3">
+            <label for="provedor" class="form-label">Proveedor</label>
+            <select name="provedor" id="provedor" class="form-select" tabindex="2" required>
+              <option value="">Selecione un papel</option>
+            <% libros.forEach((hola)=> { %>
+            <% for(var i =0; i<1; i++){%>
+               <option value=<%=hola.provedor%> > <%=hola.provedor%> </option>  
+               <% } %>
+               <% }) %>
+            </select>    
+        </div>
+         
+              <div class="mb-3">
+                
+                <label for="datosextra" class="form-label">Gra-Anch-Alto-KG</label>
+                <select name="datosextra" id="datosextra" class="form-select" tabindex="2" required>
+                  <option value="">Selecione un papel</option>
+                  <% libros.forEach((libro)=> { %>
+                    <% for(var i =0; i<1; i++){%>
+                       <option value=<%=libro.datosextra%> > <%=libro.datosextra%> </option> 
+                       <% } %>
+                       <% }) %>
+                </select> 
+                       </div>
+              <div class="mb-3">
+                <label for="formato" class="form-label">Formato</label>
+                <select name="formato" id="formato" class="form-select" tabindex="2" required>
+                  <option value="">Selecione un Formato</option>
+                  <% libros.forEach((hola)=> { %>
+                  <% for(var i =0; i<1; i++){%>
+                     <option value=<%=hola.formato%> > <%=hola.formato%> </option>  
+                     <% } %>
+                     <% }) %>
+                  </select>    
+                </select> 
+                </div>
+                <div class="mb-3">
+                
+                  
+                <div class="mb-3">
+                  <label for="cliente" class="form-label">Clientes</label>
+                  <select name="cliente" id="cliente" class="form-control">
+                    <option value="cliente">Selccione El Cliente</option>
+                    <option value="AFP_DUPLEX">AFP_DUPLEX</option>
+                    <option value="AFP_SIMPLEX">AFP_SIMPLEX</option>
+                    <option value="Agip">Agip</option>
+                    <option value="AmericanExpress">AmericanExpress</option>
+                    <option value="Antina">Antina</option>
+                    <option value="Aysam">Aysam</option>
+                    <option value="Cablevision">Cablevision</option>
+                    <option value="CablevisionOpen">CablevisionOpen</option>
+                    <option value="Citi">Citi</option>
+                    <option value="Edenor">Edenor</option>
+                    <option value="Edesur">Edesur</option>
+                    <option value="FirstData">FirstData</option>
+                    <option value="GasNatural">GasNatural</option>
+                    <option value="Ibm_Internal">Ibm_Internal</option>
+                    <option value="Ibm_Patagonia">Ibm_Patagonia</option>
+                    <option value="ICBC">ICBC</option>
+                    <option value="imp-absa">imp-absa</option>
+                    <option value="imp-anses">imp-anses</option>
+                    <option value="imp-assa">imp-assa</option>
+                    <option value="imp-bcociudad">imp-bcociudad</option>
+                    <option value="imp-berapdf">imp-berapdf</option>
+                    <option value="imp-cable">imp-cable</option>
+                    <option value="imp-cableafp">imp-cableafp</option>
+                    <option value="imp-cablec">imp-cablec</option>
+                    <option value="imp-cablef">imp-cablef</option>
+                    <option value="imp-clarocorpo">imp-clarocorpo</option>
+                    <option value="imp-clarod">imp-clarod</option>
+                    <option value="imp-claromasivo">imp-claromasivo</option>
+                    <option value="imp-clarosap">imp-clarosap</option>
+                    <option value="imp-dtvafp">imp-dtvafp</option>
+                    <option value="imp-dtvf">imp-dtvf</option>
+                    <option value="imp-ecocentro">imp-ecocentro</option>
+                    <option value="imp-ecocuyo">imp-ecocuyo</option>
+                    <option value="imp-ecopdf">imp-ecopdf</option>
+                    <option value="imp-edelap">imp-edelap</option>
+                    <option value="imp-falafp">imp-falafp</option>
+                    <option value="imp-gasnea">imp-gasnea</option>
+                    <option value="imp-generico">imp-generico</option>
+                    <option value="imp-gnat">imp-gnat</option>
+                    <option value="imp-lgas">imp-lgas</option>
+                    <option value="imp-metro">imp-metro</option>
+                    <option value="imp-metrogas">imp-metrogas</option>
+                    <option value="imp-nextelcar">imp-nextelcar</option>
+                    <option value="imp-omint">imp-omint</option>
+                    <option value="imp-pdf">imp-pdf</option>
+                    <option value="imp-personal">imp-personal</option>
+                    <option value="imp-prosegur">imp-prosegur</option>
+                    <option value="imp-rospdf">imp-rospdf</option>
+                    <option value="imp-teco">imp-teco</option>
+                    <option value="imp-tecoespe">imp-tecoespe</option>
+                    <option value="imp-tecofan">imp-tecofan</option>
+                    <option value="imp-tecoscard">imp-tecoscard</option>
+                    <option value="imp-telephone2">imp-telephone2</option>
+                    <option value="imp-telered">imp-telered</option>
+                    <option value="imp-telmex">imp-telmex</option>
+                    <option value="impripost">impripost</option>
+                    <option value="OSA">OSA</option>
+                    <option value="PDF">PDF</option>
+                    <option value="ReprocesoFijaInvertido">ReprocesoFijaInvertido</option>
+                    <option value="ReprocesoMovilInvertido">ReprocesoMovilInvertido</option>
+                    <option value="SantanderRio">SantanderRio</option>
+                    <option value="libros">libros</option>
+                    <option value="SegurosParana">SegurosParana</option>
+                    <option value="SuperCanal">SuperCanal</option>
+                    <option value="Telefonica">Telefonica</option>
+                    <option value="Visa">Visa</option>
+                    <option value="Galicia">Galicia</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                  <label for="turno" class="form-label">Turno</label>
+                  <select name="turno" id="turno" class="form-select" tabindex="2" required>
+                    <option value="">Selecione un turno</option>
+                    <option value="mañana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                    <option value="noche">Noche</option>
+                  </select> 
+                </div>
+                <div class="mb-3">
+                  <label for="fecha" class="form-label">Fecha</label>
+                  <input type="date" name="fecha" id="fecha" class="form-control" tabindex="1" required>
+                </div>
+                <div class="mb-3">
+                  <label for="gastada" class="form-label">Cantidad Gastadas</label>
+                  <input type="number" name="gastada" id="gastada" class="form-control" tabindex="1" required>
+                </div>
+                
+
+            <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+            <a href="/papeles" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+</div>
+<%}%>
+
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script type="text/html" src="dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>  
+    <script type="text/javascript" language="javascript">
+     
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+      
+      var yyyy = today.getFullYear();
+      if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
+
+      $('#fecha').attr('value', today);
+
+
+     
+    </script>
+  </body>
+</html>

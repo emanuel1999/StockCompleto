@@ -9,6 +9,9 @@
     <title>Libros Ricoh</title>
     <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+  
 
     <style>
       .bd-placeholder-img {
@@ -29,9 +32,6 @@
     
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-  
   </head>
   <body>
     
@@ -80,37 +80,35 @@
   <a href="/papeles" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Stock Papeles</a>
   <a href="/reportePapeles" class="btn btn-outline-primary mt-4 " style="font-size: 24px;">Reportes Papeles</a>
 
-  <div><a style="font-size: 24px;text-align: center;">Tapa</a></div>
+  <div><a style="font-size: 24px;text-align: center;">Encuadernado</a></div>
   <table class="table table-bordered table-striped text-center mt-4 " id="example">
     <thead>
       <tr class="bg-primary text-white">
       <th scope="col">Prioridad</th>
-      <th scope="col">Estado De Tapa</th>
+      <th scope="col">Estado Encuadernado</th>
       <th scope="col">Libro</th>
-      <th scope="col">Tipo De Papel</th>
-      <th scope="col">Tamaño De Resma</th>
-      <th scope="col">Volumen De TACO</th>
+      <th scope="col">Tamaño Cerrado</th>
+      <th scope="col">Acabado Gral</th>
       <th scope="col">Solapa</th>
       <th scope="col">Accion</th>
       </tr>
     </thead>
     <tbody>
-      <% results.forEach((libros)=> { if (libros.estadotapa=='Entregado') {}else{%>
+      <% results.forEach((libros)=> {if (libros.estadoencuadernado=='Entregado') {}else{%>
         <tr>
        <td><%=libros.prioridad%></td> 
-       <%if(libros.estadotapa=='Sin Entregar'){%>
-        <td style="background-color:#FF3636;color:black;"><a href="editTapa/<%=libros.id%>"><%=libros.estadotapa%></a></td> 
+       <%if(libros.estadoencuadernado=='Sin Entregar'){%>
+        <td style="background-color:#FF3636;color:black;"><a href="editEncuadernado/<%=libros.id%>"><%=libros.estadoencuadernado%></a></td> 
        <%}%>
-       <%if(libros.estadotapa=='En Proceso'){%>
-        <td style="background-color:#8AF333;color:black;"><a href="editTapa/<%=libros.id%>"><%=libros.estadotapa%></a></td> 
+       <%if(libros.estadoencuadernado=='En Proceso'){%>
+        <td style="background-color:#8AF333;color:black;"><a href="editEncuadernado/<%=libros.id%>"><%=libros.estadoencuadernado%></a></td> 
        <%}%>
-       <%if(libros.estadotapa=='Entregado'){%>
-        <td style="background-color:#00C9FF;color:black;"><a href="editTapa/<%=libros.id%>"><%=libros.estadotapa%></a></td> 
+       <%if(libros.estadoencuadernado=='Entregado'){%>
+        <td style="background-color:#00C9FF;color:black;"><a href="editEncuadernado"><%=libros.estadoencuadernado%></a></td> 
        <%}%>
        <td><%=libros.libro%></td> 
-       <td><%=libros.tipopapel1%></td>
-       <td><%=libros.hoja1%></td>
-       <td><%=libros.volumentaco%></td>
+       <td><%=libros.cerrado%></td>
+       <td><%=libros.acabadolibro%></td>
        <td><%=libros.solapa%></td>
        <td>
          <a href="/edit/<%=libros.id%>" class="btn btn-outline-info">Editar</a>

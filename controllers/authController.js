@@ -4,7 +4,11 @@ const conexion = require('../database/db')
 const {promisify} = require('util')
 const PDF =require('pdfkit-construct');
 const exp = require('constants');
+const { format } = require('path');
+const sgMail= require('@sendgrid/mail');
 
+const api='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';
+sgMail.setApiKey(api);
 
 //procedimiento para registrarnos
 exports.register = async (req, res)=>{    
@@ -160,18 +164,41 @@ exports.save= async (req,res)=>{
     const tipoimpresiontaco=req.body.tipoimpresiontaco;
     const estadoimpresion=req.body.estadoimpresion;
     const estadocorte=req.body.estadocorte;
+    const estadotapa=req.body.estadotapa;
+    const estadoencuadernado=req.body.estadoencuadernado;
     await conexion.query('INSERT INTO libros SET ?',{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
     pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
     up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
     tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
     acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,editorial:editorial,tacocorte:tacocorte,tamañopdf:tamañopdf,
-    provedortapa:provedortapa,provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte}, (error, results)=>{
+    provedortapa:provedortapa,provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,
+    estadocorte:estadocorte,estadotapa:estadotapa,estadoencuadernado:estadoencuadernado}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
             res.redirect('/');
         }            
     });
+}
+exports.sendMail= (req,res, next)=>{
+    const editorial=req.body.editorial;
+    const libro=req.body.libro;
+    const mail1='emanuel_rivero1616@hotmail.com'
+    const message ={
+        to:'emanuel.rivero@ricoh-la.com',
+        from : 'emanuel_rivero1616@hotmail.com',
+        subject:"Libro Cargado:  "+ libro,
+        html:"Buen dia,ya se encuentra cargado en la intranet"+'<h2>El libro:</h2> <h1>'+libro +"</h1>"+ "<h2>De la editorial: </h2><h1>" + editorial+" </h1>",
+        
+    }
+    
+    sgMail.send(message)
+    .then(response=>  next())
+    .catch(error=>console.log(error))
+    
+   
+
+
 }
 exports.update= async(req,res)=>{
     const id=req.body.id;
@@ -213,12 +240,15 @@ exports.update= async(req,res)=>{
     const tipoimpresiontaco=req.body.tipoimpresiontaco;
     const estadoimpresion=req.body.estadoimpresion;
     const estadocorte=req.body.estadocorte;
+    const estadotapa=req.body.estadotapa;
+    const estadoencuadernado=req.body.estadoencuadernado;
     await conexion.query('UPDATE libros SET ? WHERE id= ?',[{prioridad:prioridad,estado:estado,libro:libro,fechaentrega:fechaentrega,fechapentrega:fechapentrega,
         pliego:pliego,tirajeCondemasia,tirajecliente:tirajecliente,tirajeosa:tirajeosa,cerrado:cerrado,paginatapa:paginatapa,color:color,
         up:up,encuadernacion:encuadernacion,solapa:solapa,entregaarchivos:entregaarchivos,tirada:tirada,despachofinal:despachofinal,pliegoop:pliegoop,
         tipopapel:tipopapel,hojas:hojas,hojaskgcolores:hojaskgcolores,pliegoop1:pliegoop1,tipopapel1:tipopapel1,hojaskgcolores1:hojaskgcolores1,hoja1:hoja1,
         acabadolibro:acabadolibro,acabadotapa:acabadotapa,descripcion:descripcion,editorial:editorial,tacocorte:tacocorte,tamañopdf:tamañopdf,provedortapa:provedortapa,
-        provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte}, id],(error, results)=>{
+        provedorinterior:provedorinterior,volumentaco:volumentaco,tipoimpresiontaco:tipoimpresiontaco,estadoimpresion:estadoimpresion,estadocorte:estadocorte,
+        estadotapa:estadotapa,estadoencuadernado:estadoencuadernado}, id],(error, results)=>{
             if(error){
                 console.log(error);
             }else {
@@ -248,6 +278,141 @@ exports.updateEstadoCo=(req,res)=>{
             }
         })
 }
+exports.saveRep=async(req,res)=>{
+    const fecha=req.body.fecha;
+    const turno=req.body.turno;
+    const libro=req.body.libro;
+    const libro1=req.body.libro1;
+    const libro2=req.body.libro2;
+    const trilateral=req.body.trilateral;
+    const laminado=req.body.laminado;
+    const guillotinado=req.body.guillotinado;
+    const encuadernado=req.body.encuadernado;
+    const observaciones=req.body.observaciones;
+    await conexion.query('INSERT INTO reportes SET ?',{fecha:fecha,turno:turno,libro:libro,trilateral:trilateral,
+    laminado:laminado,guillotinado:guillotinado,encuadernado:encuadernado,observaciones:observaciones,libro1:libro1,libro2:libro2}, (error,results)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.redirect('/reportes');
+        }  
+
+    })
+
+}
+
+
+exports.updateEstadoTa=(req,res)=>{
+    const id=req.body.id;
+    const estadotapa=req.body.estadotapa;
+    conexion.query('UPDATE libros SET ? WHERE id= ?',[{estadotapa:estadotapa}, id],(error, results)=>{
+            if(error){
+                console.log(error);
+            }else {
+                res.redirect('/tapa');
+            }
+        })
+}
+exports.updateEncuadernado=(req,res)=>{
+    const id=req.body.id;
+    const estadoencuadernado=req.body.estadoencuadernado;
+    conexion.query('UPDATE libros SET ? WHERE id= ?',[{estadoencuadernado:estadoencuadernado}, id],(error, results)=>{
+            if(error){
+                console.log(error);
+            }else {
+                res.redirect('/encuadernado');
+            }
+        })
+}
+exports.savePapeles=(req,res)=>{
+    const papel=req.body.papel;
+    const cantidad=req.body.cantidad;
+    const datosextra=req.body.datosextra;
+    const formato=req.body.formato;
+    const provedor=req.body.provedor;
+    conexion.query('INSERT INTO papeles SET ? ',{papel:papel,cantidad:cantidad,datosextra:datosextra,formato:formato,provedor:provedor},(error,results)=>{
+        if(error){
+            console.log(error)
+        }else{
+            res.redirect('papeles')
+        }
+    })
+
+}
+
+exports.updateConsumo=(req,res)=>{
+    const id=req.body.id;
+    const papel=req.body.papel;
+    const cantidad=req.body.cantidad;
+    const datosextra=req.body.datosextra;
+    const formato=req.body.formato;
+    const gastada=req.body.gastada;
+    
+    const valor= cantidad-gastada;
+    conexion.query('UPDATE papeles SET ? WHERE id= ?',[{papel:papel,datosextra:datosextra,formato:formato,cantidad:valor}, id],(error, results)=>{
+        if(error){
+            console.log(error);
+        }else {
+            
+            res.redirect('/papeles');
+        }
+    })
+
+    //antes de hacer el update tendria que hacer un cantidad que tengo menos las ingresadas.
+    //cantidad=cantidadingresada-cantidadBD
+
+}
+
+exports.saveConsumoSup=(req,res)=>{
+    const papel=req.body.papel;
+    const provedor=req.body.provedor;
+    const cliente=req.body.cliente;
+    const datosextra=req.body.datosextra;
+    const gastada=req.body.gastada;
+    const formato=req.body.formato;
+    const fecha=req.body.fecha;
+    const turno=req.body.turno;
+    conexion.query('UPDATE papeles SET cantidad=(cantidad- ?) WHERE papel =? and provedor=? and datosextra=? and formato=?',
+    [gastada,papel,provedor,datosextra,formato],(error,results)=>{
+        if(error){
+             console.log(error);
+             console.log('Datos Invalidos para hacer el Update')
+     }else{
+         
+           conexion.query('INSERT INTO consumoPapel SET ? ',{papel:papel,cliente:cliente,datosextra:datosextra
+        ,formato:formato,provedor:provedor,gastada:gastada,fecha:fecha,turno:turno},(error,results)=>{
+        if(error){
+            console.log(error)
+        }else{
+            res.redirect('papeles');
+
+        }
+    })
+    }
+})
+}
+
+exports.updatePapl=(req,res)=>{
+    
+   
+    const papel=req.body.papel;
+    conexion.query('SELECT * FROM papeles WHERE papel=? ',[papel],(error,results)=>{
+
+       if(error){res.redirect('/')}
+       else{
+        req.results=results
+       }
+   })
+
+}
+/*
+exports.saveReportePapel=(req,res)=>{
+    const papel=req.body.papel;
+    const fechaU=req.body.fechau;
+    const cantidad=req.body.cantidad;
+
+    
+}*/
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')   
     return res.redirect('/')
@@ -440,6 +605,4 @@ doc.fontSize(20).addTable([
     doc.end();
 }  
 })
-    
-
 }
