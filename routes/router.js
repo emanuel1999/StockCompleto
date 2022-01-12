@@ -40,7 +40,7 @@ router.get('/',authController.isAuthenticated, (req, res)=>{
 router.get('/create',authController.isAuthenticated,authController.isAdmin, (req,res)=>{
     res.render('create');
 })
-router.post('/save',authController.isAuthenticated,authController.isAdmin,authController.save);
+router.post('/save',authController.isAuthenticated,authController.isAdmin,authController.sendMail,authController.save);
 router.post('/saveRep',authController.isAuthenticated,authController.isAdmin,authController.saveRep);
 router.post('/update',authController.isAuthenticated,authController.isAdmin,authController.update);
 router.post('/updateImpresion',authController.isAuthenticated,authController.updateEstadoIm);
